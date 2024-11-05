@@ -4,8 +4,12 @@ namespace Bookningapp
 {
     internal class Program
     {
+        private static List<Lokal> lokaler = new List<Lokal>();
         static void Main(string[] args)
         {
+            //ladda in lokaler från fil vid programstart
+            lokaler = FilHanterare.LäsFrånFil();
+
             {                             
                
                 List<> lokaler = new List<Lokal>();
@@ -69,7 +73,7 @@ namespace Bookningapp
 
 
                     string choice = Console.ReadLine();
-
+                    bool exit = false;
                     switch (choice)
 
                     {
@@ -130,9 +134,11 @@ namespace Bookningapp
 
                             break;
 
-                            
-                        case "7";
-                            Avsluta
+
+                        case "7":
+                            exit = true;
+                            FilHanterare.SparaTillFil(lokaler);//spara lokaler till fil och sedan avsluta
+                            Console.WriteLine("Lokaler och bokningar sparade. Programmet avslutas!");
 
                         default:
 
