@@ -62,7 +62,7 @@ namespace Bookningapp
                     
                     Console.WriteLine("6. Lägga till en ny lokal"); 
                     //Borde väl inte kunna göras av elev egentligen?
-                    //När ny sal skapas ska programmet säga till om sal namn redan finns
+                    //När ny sal skapas ska programmet säga till om salnamn redan finns
                     
                     
                     Console.WriteLine("7. Avsluta");
@@ -75,7 +75,7 @@ namespace Bookningapp
                     {
                         case "1":
 
-                            AddReservation(); //engelska?//Alexandra? August?
+                            NyBokning(); //engelska?//Alexandra? August?
                             //Metod med interface  
                             //Interface ska implementeras i "relevanta" klasser
                             //Interface som returtyp
@@ -86,7 +86,7 @@ namespace Bookningapp
 
                         case "2":
 
-                            UppdateExistingReservation(); //Alexandra? August?
+                            UppdateraBefintligBokning(); //Alexandra? August?
                             //Metod med interface 
                             //Interface ska implementeras i "relevanta" klasser
                             //Interface som returtyp
@@ -96,7 +96,7 @@ namespace Bookningapp
                             break;
 
                         case "3":
-                            DeleteExistingReservation(); //(Alexandra ? August ?)
+                            RaderaBefintligBokning(); //(Alexandra ? August ?)
                             //Metod med interface 
                             //Interface ska implementeras i "relevanta" klasser
                             //Interface som returtyp
@@ -104,7 +104,7 @@ namespace Bookningapp
                             break;
 
                         case "4":
-                            ListAllReservations(); //(August? Rebecka?)
+                            ListaAllaBokningar(); //(August? Rebecka?)
                             //Använda List<T> för att lagra bokningar när program körs 
                             
                             //Implementera operationer för filtrering och sökning
@@ -126,7 +126,7 @@ namespace Bookningapp
                             return;
 
                         case "6":
-                            LäggaTillEnNyLokal(); //Rebecka?
+                            LäggaTillNyLokal(); //Rebecka?
 
                             break;
 
