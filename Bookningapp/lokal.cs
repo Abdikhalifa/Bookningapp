@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Bookningapp
 {
-    internal class Lokal
+    public class Lokal
     {
         public string Namn { get; set; }
         public string Plats { get; set; }
