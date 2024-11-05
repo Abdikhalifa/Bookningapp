@@ -15,7 +15,7 @@ namespace Bookningapp
                 List<> bokningar = new List<Bokningar>();
                 //Bokningar finns inte som klass
                 //Kan bokningar läggas in i lokallistan? Förstår det som att det är olika saker
-                //eftersom det ska gå att söka på det ena eller det andra? Kanske bara kan rensa i listan
+                //eftersom det ska gå att söka på det ena eller det andra? Kanske bara kan rensa i listan med serializing
                 //Är det bara interfacet som är kopplingen?
                 
 
