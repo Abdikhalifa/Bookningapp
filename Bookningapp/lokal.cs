@@ -9,18 +9,17 @@ namespace Bookningapp
     internal class Lokal
     {
         public string Namn { get; set; }
-        public string Plats { get; set; }
-        public bool Tillgänglighet { get; set; }
+        public int Kapacitet { get; set; }
 
-        public Lokal(string namn, string plats, bool tillgänglighet)
+        public Lokal(string namn, int kapacitet )
         {
             Namn = namn;
-            Plats = plats;
-            Tillgänglighet = tillgänglighet;
+            Kapacitet = kapacitet;
+            
         }
         public virtual void VisaInfo()
         {
-
+            Console.WriteLine($"Namn: {Namn} Kapacitet: {Kapacitet}");
 
         }
     }
