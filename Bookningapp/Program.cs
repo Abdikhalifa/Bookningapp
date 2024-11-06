@@ -3,9 +3,9 @@ using System.Security.Principal;
 
 namespace Bookningapp
 {
-    internal class Program
+    public class Program
     {
-        List<Lokal> lokaler = new List<Lokal>();
+        private static List<Lokal> lokaler = new List<Lokal>();
         static void Main(string[] args)
         {
             //ladda in lokaler från fil vid programstart
@@ -13,7 +13,7 @@ namespace Bookningapp
 
             {
 
-                List<> lokaler = new List<Lokal>();
+                //List<> lokaler = new List<Lokal>();
                 //Lägga utanför main? I klassen?
                 //Vilka egenskaper finns i listan
 
@@ -25,8 +25,8 @@ namespace Bookningapp
 
 
                 //Console.WriteLine("Välkommen till bokningssidan för lokaler!");
-
-                while (true)
+                bool exit = false;
+                while (!exit)
 
                 {
                     Console.Clear();
@@ -136,8 +136,11 @@ namespace Bookningapp
                             break;
 
 
-                        case "7";
-                            Avsluta
+                        case "7":
+                            exit = true;
+                            FilHanterare.SparaTillFil(lokaler);//Spara lokaler till fil
+                            Console.WriteLine("Lokaler och bokningar sparade. Programmet avslutas!");
+                            break;
 
                         default:
 
@@ -163,7 +166,7 @@ namespace Bookningapp
                     Console.WriteLine("Lista över alla lokaler:");
                     foreach (var lokal in lokaler) 
                     {
-                        Console.WriteLine(lokal.VisaInfo());
+                        Console.WriteLine(lokal.VisaInfo());//eventuell fel
                     }
                 }
             }
