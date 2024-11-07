@@ -12,28 +12,28 @@ namespace Bookningapp
             grupprum.VisaInfo();
             sal.VisaInfo();
 
-            // Metod för att uppdatera en bokning
-            public void UppdateraBokning()
-            {
-                Console.WriteLine("Ange bokningsnamn att uppdatera: ");
-                int bokningsNamn = int.Parse(Console.ReadLine());
-                Bokning bokning = bokningar.Find(b => b.Bokningsnamn == bokningsNamn);
+            //// Metod för att uppdatera en bokning
+            //public void UppdateraBokning()
+            //{
+            //    Console.WriteLine("Ange bokningsnamn att uppdatera: ");
+            //    int bokningsNamn = int.Parse(Console.ReadLine());
+            //    Bokning bokning = bokningar.Find(b => b.Bokningsnamn == bokningsNamn);
 
-                if (bokning != null)
-                {
-                    Console.WriteLine("Ange ny starttid (YYYY-MM-DD HH:MM): ");
-                    bokning.Starttid = DateTime.Parse(Console.ReadLine());
+            //    if (bokning != null)
+            //    {
+            //        Console.WriteLine("Ange ny starttid (YYYY-MM-DD HH:MM): ");
+            //        bokning.Starttid = DateTime.Parse(Console.ReadLine());
 
-                    Console.WriteLine("Ange ny sluttid (YYYY-MM-DD HH:MM): ");
-                    bokning.Sluttid = DateTime.Parse(Console.ReadLine());
+            //        Console.WriteLine("Ange ny sluttid (YYYY-MM-DD HH:MM): ");
+            //        bokning.Sluttid = DateTime.Parse(Console.ReadLine());
 
-                    Console.WriteLine($"Bokning {bokningsNamn} uppdaterad till {bokning.Starttid} - {bokning.Sluttid}");
-                }
-                else
-                {
-                    Console.WriteLine("Bokning hittades inte.");
-                }
-            }
+            //        Console.WriteLine($"Bokning {bokningsNamn} uppdaterad till {bokning.Starttid} - {bokning.Sluttid}");
+            //    }
+            //    else
+            //    {
+            //        Console.WriteLine("Bokning hittades inte.");
+            //    }
+            //}
 
             //List<Lokal> bokning = new List<Lokal>();
 
