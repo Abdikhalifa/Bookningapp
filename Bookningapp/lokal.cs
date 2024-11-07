@@ -13,13 +13,13 @@ namespace Bookningapp
         public int Kapacitet { get; set; }
 
         //bokningS hanterar bokningarna för lokelen
-        private BokningS bokningS;
+        private BokningService bokningS;
 
         public Lokal(string namn, int kapacitet )
         {
             Namn = namn;
             Kapacitet = kapacitet;
-            bokningS = new BokningS();
+            bokningS = new BokningService();
 
             
         }

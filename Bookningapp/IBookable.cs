@@ -11,5 +11,7 @@ namespace Bookningapp
         bool Boka(DateTime startTid, DateTime slutTid);
         bool Avboka(DateTime startTid);
         bool ÄrTillgänglig(DateTime startTid, DateTime slutTid);
+
+
     }
 }

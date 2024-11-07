@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace Bookningapp
 {
-    internal class BokningS
+    internal class BokningService
     {
         // Lista för att hålla alla bokningar (med start- och sluttid för varje bokning)
         private List<(DateTime StartTid, DateTime SlutTid)> bokningar;
 
         // Konstruktor som skapar en tom lista för bokningar
-        public BokningS()
+        public BokningService()
         {
             bokningar = new List<(DateTime StartTid, DateTime SlutTid)> ();
         }
