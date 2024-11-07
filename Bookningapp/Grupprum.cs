@@ -6,7 +6,19 @@ using System.Threading.Tasks;
 
 namespace Bookningapp
 {
-    internal class Grupprum
+    internal class Grupprum : Lokal
     {
+        //public int AntalPlatser { get; set; }
+        public bool HarWhiteboard { get; set; }
+        public Grupprum(string namn, int kapacitet, bool harWhiteboard) : base(namn, kapacitet)
+        {
+            HarWhiteboard = harWhiteboard;
+        }
+        public override void VisaInfo()
+        {
+            base.VisaInfo();
+            Console.WriteLine($"Whiteboard: {(HarWhiteboard ? "Ja" : "Nej")}");
+        }
     }
+   
 }
