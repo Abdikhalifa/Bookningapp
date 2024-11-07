@@ -68,22 +68,22 @@ namespace Bookningapp
             }
 
             foreach (var bokning in bokningar)
-                Console.WriteLine(bokning.ToString());
+                Console.WriteLine(bokning);
         }
 
         //Lista efter specifikt år 
         public void ListaBokningarEfterÅr(int år)
         {
-            var filtereraBokning = bokningar.Where(b => b.StartTid.Year == år).ToList();
+            var årligBokning = bokningar.Where(b => b.StartTid.Year == år).ToList();
 
-            if (filtereraBokning.Count == 0)
+            if (årligBokning.Count == 0)
             {
                 Console.WriteLine($"Inga bokningar finns för året {år}.");
                 return;
             }
 
-            foreach (var bokning in filtereraBokning)
-                Console.WriteLine(bokning.ToString());
+            foreach (var bokning in årligBokning) 
+                Console.WriteLine(bokning);
         }
     }
 }
