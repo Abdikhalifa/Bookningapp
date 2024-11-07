@@ -29,7 +29,7 @@ namespace Bookningapp
                 while (!exit)
 
                 {
-                    Console.Clear();
+                    Console.Clear(); 
                     Console.Write("Ange namn och tryck enter.");
                     //Om vi skulle lägga detta i meny på Omniway slipper man uppge namn och
                     //programmet skulle i så fall "automatiskt" veta om man är personal eller elev när man loggar in.
