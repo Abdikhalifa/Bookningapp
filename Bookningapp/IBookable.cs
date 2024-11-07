@@ -8,8 +8,8 @@ namespace Bookningapp
 {
     internal interface IBookable
     {
-        // LäggTillBokning();
-        //UppdateraBefintligBokning()
-        //TaBortBefintligBokning()
+        bool Boka(DateTime startTid, DateTime slutTid);
+        bool Avboka(DateTime startTid);
+        bool ÄrTillgänglig(DateTime startTid, DateTime slutTid);
     }
 }

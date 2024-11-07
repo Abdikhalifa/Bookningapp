@@ -35,8 +35,18 @@ namespace Bookningapp
                     //programmet skulle i så fall "automatiskt" veta om man är personal eller elev när man loggar in.
                     //Detta kan vara en beskrivning om hur man startar och använder programmet?
 
+            //}
+            //static void ListaLokaler()
+            //{
+            //    Console.WriteLine("Här listar vi alla lokaler.");
+            //    // Implementera kod för att lista alla skapade lokaler
+            //}
 
-                    Console.WriteLine("\nVälj vad du vill göra:");
+            //static void SkapaBokning()
+            //{
+            //    Console.WriteLine("Här skapas en ny bokning.");
+            //    // Implementera kod för att skapa en ny bokning
+            //}
 
                     Console.WriteLine("1. Skapa en ny bokning");
                     //Enklare om man kan söka på lediga lokaler

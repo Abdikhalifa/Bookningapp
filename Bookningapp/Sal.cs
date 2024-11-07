@@ -6,7 +6,18 @@ using System.Threading.Tasks;
 
 namespace Bookningapp
 {
-    internal class Sal
+    internal class Sal : Lokal
     {
+        public bool HarProjektor { get; set; }
+        
+        public Sal(string namn, int kapacitet, bool harProjektor) : base(namn, kapacitet)
+        {
+            HarProjektor = harProjektor;
+        }
+        public override void VisaInfo()
+        {
+            base.VisaInfo();
+            Console.WriteLine($"Projektor: {(HarProjektor ? "Ja" : "Nej")}");
+        }
     }
 }
