@@ -5,6 +5,7 @@ namespace Bookningapp
 {
     public class Program
     {
+
         private static List<Lokal> lokaler = new List<Lokal>();
         static void Main(string[] args)
         {
@@ -118,6 +119,7 @@ namespace Bookningapp
 
                             break;
 
+
                         case "4":
                             ListaAllaBokningar(); //(August? Rebecka?)
                                                   //Använda List<T> för att lagra bokningar när program körs 
@@ -164,21 +166,32 @@ namespace Bookningapp
                     }
 
                 }
+                //lista bokningar efter år 
+                static void ListaBokningarFrånÅr()
+                {
+                    Console.Write("Ange år: ");
+                    int år = int.Parse(Console.ReadLine());
+
+                    bokningar.ListaBokningarFrånÅr(år);
+                }
+
                 //Metod för att lista alla lokaler (salar och grupprum)
                 static void ListaAllaLokaler()
-                    { 
-                        if (lokaler.Count == 0)
-                        {
-                            Console.WriteLine("Inga lokaler finns att visa.");
-                            return;
-                        }
+                {
+                    if (lokaler.Count == 0)
+                    {
+                        Console.WriteLine("Inga lokaler finns att visa.");
+                        return;
+                    }
 
                     Console.WriteLine("Lista över alla lokaler:");
-                    foreach (var lokal in lokaler) 
+                    foreach (var lokal in lokaler)
                     {
-                        Console.WriteLine(lokal.VisaInfo());//eventuell fel
+                        Console.WriteLine(lokal.VisaInfo());
                     }
                 }
+
+
             }
 
 
