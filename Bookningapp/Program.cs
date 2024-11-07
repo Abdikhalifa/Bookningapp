@@ -6,11 +6,12 @@ namespace Bookningapp
     {
         static void Main(string[] args)
         {
-            {                             
-               
-                List<> lokaler = new List<Lokal>();
-                //Lägga utanför main? I klassen?
-                //Vilka egenskaper finns i listan
+            
+            Grupprum grupprum = new Grupprum("Grupprun A", 5, false);
+            Sal sal = new Sal("Aulan", 50, true);
+            grupprum.VisaInfo();
+            sal.VisaInfo();
+            //List<Lokal> bokning = new List<Lokal>();
 
                 List<> bokningar = new List<Bokningar>();
                 //Bokningar finns inte som klass
@@ -19,19 +20,40 @@ namespace Bookningapp
                 //Är det bara interfacet som är kopplingen?
                 
 
-                //Console.WriteLine("Välkommen till bokningssidan för lokaler!");
-                                             
-                while (true)
+            //while (true)
+            //{
+            //    Console.WriteLine("1. Lista lokar ");
+            //    Console.WriteLine("2. skapa bokning ");
+            //    Console.WriteLine("3. Visa alla bokningar för Grupprum ");
+            //    Console.WriteLine(" \nVälj ett alternativ:");
+            //    val = Console.ReadLine();
 
-                {
-                    Console.Clear();
-                    Console.Write("Ange namn och tryck enter.");
-                    //Om vi skulle lägga detta i meny på Omniway slipper man uppge namn och
-                    //programmet skulle i så fall "automatiskt" veta om man är personal eller elev när man loggar in.
-                    //Detta kan vara en beskrivning om hur man startar och använder programmet?
+            //    if (val == "1")
+            //    {
+            //        ListaLokaler();
+            //    }
+            //    else if (val == "2")
+            //    {
+            //        SkapaBokning();
 
+            //    }
+            //    else if (val == "3")
+            //    {
+            //        VisaBokningar();
+            //    }
 
-                    Console.WriteLine("\nVälj vad du vill göra:");
+            //}
+            //static void ListaLokaler()
+            //{
+            //    Console.WriteLine("Här listar vi alla lokaler.");
+            //    // Implementera kod för att lista alla skapade lokaler
+            //}
+
+            //static void SkapaBokning()
+            //{
+            //    Console.WriteLine("Här skapas en ny bokning.");
+            //    // Implementera kod för att skapa en ny bokning
+            //}
 
                     Console.WriteLine("1. Skapa en ny bokning");  
                     //Enklare om man kan söka på lediga lokaler
