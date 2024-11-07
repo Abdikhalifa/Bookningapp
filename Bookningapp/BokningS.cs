@@ -30,7 +30,7 @@ namespace Bookningapp
             SluttidBokning = sluttid;
 
         }
-
+        List<BokningS> Bokning = new List<BokningS>();
         public void NyBokning()
         {
             while (true)
@@ -38,18 +38,19 @@ namespace Bookningapp
                 //Visa lista på alla befintliga bokningar (Förslagsvis framgår av lokalnamnet om det är sal eller grupprum) 
                 //Ska denna del läggas utanför whileloop?:
                 Console.WriteLine("Skriv in namnet på den lokal du vill boka: ");  //Ha en siffra vid lokalnamnet som kan anges istället?
-                string? önskadLokal = Console.ReadLine();
-                Bokning lokal;
+                string? stringÖnskadLokal = Console.ReadLine();
+                Bokning. lokal;
                 //Konvertera sträng till Bokning (Lokal?)
                 Bokning lokal = bokningar.Find(lokal => lokal == önskadLokal);
 
                 if (lokal != null)
                 {
+                    DateTime starttidBokning;
                     while (true)
                     {
                         Console.WriteLine("Skriv in datum och tid som du vill boka i formatet yyyy-MM-dd HH:mm");
                         string strängdatum = Console.ReadLine();
-                        DateTime starttidBokning;
+                       
                         //Konvertera till DateTime (kontrollera om det är rätt format, det får inte heller vara ett datum som passerat(?))
                         try
                         {
@@ -75,8 +76,9 @@ namespace Bookningapp
                     {
 
                     }
+                    
 
-                    DateTime sluttid = starttid + bokningslängd;
+                    DateTime sluttidBokning = starttidBokning + bokningslängd;
 
                     //Kontrollera om lokalen har bokad under den tiden
                     for eller foreachloop? //Loopa igenom alla (eventuella) bokningar för lokalen
@@ -167,8 +169,8 @@ namespace Bookningapp
         // Ta bort en bokning
 
 
-
-    }
+    
+    
 
     }
 }
