@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Bookningapp
 {
-    internal class Lokal : IBookable 
+    public class Lokal : IBookable 
     {
         // Egenskaper för namn och kapacitet
         public string Namn { get; set; }
@@ -40,7 +40,10 @@ namespace Bookningapp
            
         }
 
-       
+        public bool ÄrTillgänglig(DateTime startTid, DateTime slutTid)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
 

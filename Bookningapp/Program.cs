@@ -5,7 +5,7 @@ namespace Bookningapp
 {
     public class Program
     {
-        private static List<Lokal> lokaler = new List<Lokal>();
+        public static List<Lokal> lokaler = new List<Lokal>();
         static void Main(string[] args)
         {
             //ladda in lokaler från fil vid programstart
@@ -17,7 +17,7 @@ namespace Bookningapp
                 //Lägga utanför main? I klassen?
                 //Vilka egenskaper finns i listan
 
-                List<> bokningar = new List<Bokningar>();
+                //List<> bokningar = new List<Bokningar>();
                 //Bokningar finns inte som klass
                 //Kan bokningar läggas in i lokallistan? Förstår det som att det är olika saker
                 //eftersom det ska gå att söka på det ena eller det andra? Kanske bara kan rensa i listan med serializing
