@@ -82,8 +82,9 @@ namespace Bookningapp
 
                     Console.WriteLine("7. Avsluta");
 
-
+                    Console.WriteLine("Välj ett alternativ");
                     string choice = Console.ReadLine();
+
 
                     switch (choice)
 
@@ -111,7 +112,7 @@ namespace Bookningapp
                             break;
 
                         case "3":
-                            RaderaBefintligBokning(); //(Alexandra ? August ?)
+                            TaBortBokning(); //(Alexandra ? August ?)
                             //Metod med interface 
                             //Interface ska implementeras i "relevanta" klasser
                             //Interface som returtyp

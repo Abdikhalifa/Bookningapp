@@ -10,7 +10,7 @@ namespace Bookningapp
     {
         string Användarnamn { get; set; }  //Ska detta tas in varje gång eller räcker det med en gång innan menyn
                                           
-        int Bokningsnummer { get; } //Behöver vara unikt och inte random(?). 
+        //int Bokningsnummer { get; } //Behöver vara unikt och inte random(?). Behövs inte om index används och visas i listan
 
         //När kan det vara lämpligt att interface används som returtyp? (Tekniskt krav på användning)
         //Vilka klasser implementerar interface, är det bara Bokning (om vi har en sån klass)
@@ -22,8 +22,8 @@ namespace Bookningapp
         DateTime StarttidBokning { get; set; }
         DateTime SluttidBokning { get; set; } //inget set om det räknas ut i programmet
 
-        TimeSpan TidslängdBokning { get; set; } //inget set om det räknas ut i programmet
-        
+        TimeSpan TidslängdBokning => SluttidBokning - StarttidBokning;
+
         void NyBokning();
         //Listan på bokningar visas? (annan metod) Det bör framgå i listan vilken lokaltyp som bokats
         //Uppgifter om vilken lokal (först namn? välja grupprum/sal först?) +
@@ -35,7 +35,7 @@ namespace Bookningapp
         //Bokningen sparas i listan och ges ett bokningsnummer?,
         //inget returneras mer än text som bekräftar att bokningen skett (inkl. bokningsnummer?)
 
-        void UppdateraBokning(); //OBS! Tagit bort "befintlig", kolla vad Rebecka gjort?
+        void UppdateraBokning(); //OBS! Tagit bort "befintlig
         //Namn tas in? (behövs inte om det sker innan menyn)
         //Visar lista på egna (alla?) bokningar med nummer på bokningen, lokalnamn och datum/tid
         //Användare uppger bokningsnummer på det som ska ändras
