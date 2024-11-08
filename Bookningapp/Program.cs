@@ -114,7 +114,7 @@ namespace Bookningapp
                     {
                         case "1":
 
-                            NyBokning(); //engelska?//Alexandra? August?
+                            //NyBokning(); //engelska?//Alexandra? August?
                             //Metod med interface  
                             //Interface ska implementeras i "relevanta" klasser
                             //Interface som returtyp
@@ -125,7 +125,7 @@ namespace Bookningapp
 
                         case "2":
 
-                            UppdateraBefintligBokning(); //Alexandra? August?
+                           // UppdateraBefintligBokning(); //Alexandra? August?
                             //Metod med interface 
                             //Interface ska implementeras i "relevanta" klasser
                             //Interface som returtyp
@@ -135,7 +135,7 @@ namespace Bookningapp
                             break;
 
                         case "3":
-                            RaderaBefintligBokning(); //(Alexandra ? August ?)
+                           // RaderaBefintligBokning(); //(Alexandra ? August ?)
                             //Metod med interface 
                             //Interface ska implementeras i "relevanta" klasser
                             //Interface som returtyp
