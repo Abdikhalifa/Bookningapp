@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Bookningapp
 {
-    internal interface IBookable
+    public interface IBookable
     {
         bool Boka(DateTime startTid, DateTime slutTid);
         bool Avboka(DateTime startTid);
