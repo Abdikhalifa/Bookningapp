@@ -19,7 +19,7 @@ namespace Bookningapp
                 //Lägga utanför main? I klassen?
                 //Vilka egenskaper finns i listan
 
-                List<> bokningar = new List<Bokningar>();
+                //List<> bokningar = new List<Bokningar>();
                 //Bokningar finns inte som klass
                 //Kan bokningar läggas in i lokallistan? Förstår det som att det är olika saker
                 //eftersom det ska gå att söka på det ena eller det andra? Kanske bara kan rensa i listan med serializing
@@ -143,6 +143,7 @@ namespace Bookningapp
                             Console.WriteLine("Ange år vilket år du vill kolla bokningar:");
                             if (int.TryParse(Console.ReadLine(), out int år))
                                 bokningsHanterare.ListaBokningarEfterÅr(år);
+                            break;
 
 
                         case "6":
@@ -243,7 +244,7 @@ namespace Bookningapp
                     Console.WriteLine("Lista över alla lokaler:");
                     foreach (var lokal in lokaler)
                     {
-                        Console.WriteLine(lokal.VisaInfo());
+                        lokal.VisaInfo();
                     }
                 }
 
