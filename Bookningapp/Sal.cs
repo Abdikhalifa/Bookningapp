@@ -19,7 +19,7 @@ namespace Bookningapp
             base.VisaInfo();
             Console.WriteLine($"Projektor: {(HarProjektor ? "Ja" : "Nej")}");
 
-            // public override string VisaInfo() => $"Sal: {Namn}, Antal platser: {Kapacitet}, Har pojektor: {HarProjektor}";
+            // public override string VisaInfo() => $"Sal: {Namn}, Antal platser: {Kapacitet}, Har pojektor: {HarProjektor}"; // Rebecca
         }
 }
 }

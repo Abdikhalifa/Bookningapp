@@ -8,7 +8,7 @@ using System.IO;
 
 namespace Bookningapp
 {
-    public static class FilHanterare
+    public static class FilHanterare // Rebecca
     {
         private static String sökVäg = "lokaler.json"; // Definerar sökvägen till json-filen där lokaler ska sparas
 

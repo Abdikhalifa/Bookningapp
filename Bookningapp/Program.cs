@@ -10,7 +10,7 @@ namespace Bookningapp
         private static List<Lokal> lokaler = new List<Lokal>();
         static void Main(string[] args)
         {
-
+            //Lokaler som finns med från start, när man startar programmet. /Rebecca
             //3 "skapade" salar från start
             Sal sal1 = new Sal("Sal 1", 42, true);
             Sal sal2 = new Sal("Sal 2", 35, false);
@@ -27,7 +27,7 @@ namespace Bookningapp
             lokaler.Add(grupprum2);
             lokaler.Add(grupprum3);
 
-            //ladda in lokaler från fil vid programstart
+            //ladda in lokaler från fil vid programstart /Rebecca
             lokaler = FilHanterare.LäsFrånFil();
 
             {
@@ -157,8 +157,8 @@ namespace Bookningapp
                             break;
 
                         case "5":
-                            Console.WriteLine("Ange år vilket år du vill kolla bokningar:");
-                            if (int.TryParse(Console.ReadLine(), out int år))
+                            Console.WriteLine("Ange år vilket år du vill kolla bokningar:"); //Ber användaren om år vid sökning efter bokning efter år.
+                            if (int.TryParse(Console.ReadLine(), out int år))                 //Rebecca
                                 bokningsHanterare.ListaBokningarEfterÅr(år);
                             break;
 
@@ -186,7 +186,7 @@ namespace Bookningapp
 
                                 case "9":
                                     exit = true;
-                                    FilHanterare.SparaTillFil(lokaler);//Spara lokaler till fil
+                                    FilHanterare.SparaTillFil(lokaler);//Spara lokaler till fil /Rebecca
                                     Console.WriteLine("Lokaler och bokningar sparade. Programmet avslutas!");
                                     break;
 
@@ -203,7 +203,7 @@ namespace Bookningapp
                             }
 
                 }
-                //metod för att skapa ny sal
+                //metod för att skapa ny sal /Rebecca
                 static void LäggaTillNySal()
                 {
                     Console.WriteLine("Ange namn på salen: ");
@@ -226,7 +226,7 @@ namespace Bookningapp
                     Console.WriteLine("Ny sal skapad.");
                 }
 
-                //metod för att skapa nytt grupprum
+                //metod för att skapa nytt grupprum /Rebecca
                 static void LäggaTillNyttGrupprum()
                 {
                     Console.WriteLine("Ange namn på grupprummet: ");
@@ -249,7 +249,7 @@ namespace Bookningapp
                     Console.WriteLine("Nytt grupprum skapat.");
                 }
 
-                //Metod för att lista alla lokaler (salar och grupprum)
+                //Metod för att lista alla lokaler (salar och grupprum) / Rebecca
                 static void ListaAllaLokaler()
                 {
                     if (lokaler.Count == 0)
