@@ -40,8 +40,10 @@ namespace Bookningapp
            
         }
 
-
-
+        public bool ÄrTillgänglig(DateTime startTid, DateTime slutTid)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
 
