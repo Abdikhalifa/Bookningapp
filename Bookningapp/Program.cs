@@ -11,15 +11,15 @@ namespace Bookningapp
         static void Main(string[] args)
         {
 
-            
+            //3 "skapade" salar från start
             Sal sal1 = new Sal("Sal 1", 42, true);
             Sal sal2 = new Sal("Sal 2", 35, false);
             Sal sal3 = new Sal("Sal 3",50, true);
-
+            //3 "skapade" salar från start
             Grupprum grupprum1 = new Grupprum("Grupprum 1", 4, false);
             Grupprum grupprum2 = new Grupprum("Grupprum 2", 6, true);
             Grupprum grupprum3 = new Grupprum("Grupprum 3", 8, true);
-
+            //Lägger in dem i listan "lokaler". 
             lokaler.Add(sal1);
             lokaler.Add(sal2); 
             lokaler.Add(sal3);
