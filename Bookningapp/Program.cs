@@ -10,6 +10,23 @@ namespace Bookningapp
         private static List<Lokal> lokaler = new List<Lokal>();
         static void Main(string[] args)
         {
+
+            
+            Sal sal1 = new Sal("Sal 1", 42, true);
+            Sal sal2 = new Sal("Sal 2", 35, false);
+            Sal sal3 = new Sal("Sal 3",50, true);
+
+            Grupprum grupprum1 = new Grupprum("Grupprun 1", 4, false);
+            Grupprum grupprum2 = new Grupprum("Grupprun 2", 6, true);
+            Grupprum grupprum3 = new Grupprum("Grupprum 3", 8, true);
+
+            lokaler.Add(sal1);
+            lokaler.Add(sal2); 
+            lokaler.Add(sal3);
+            lokaler.Add(grupprum1);
+            lokaler.Add(grupprum2);
+            lokaler.Add(grupprum3);
+
             //ladda in lokaler från fil vid programstart
             lokaler = FilHanterare.LäsFrånFil();
 
