@@ -16,8 +16,8 @@ namespace Bookningapp
             Sal sal2 = new Sal("Sal 2", 35, false);
             Sal sal3 = new Sal("Sal 3",50, true);
 
-            Grupprum grupprum1 = new Grupprum("Grupprun 1", 4, false);
-            Grupprum grupprum2 = new Grupprum("Grupprun 2", 6, true);
+            Grupprum grupprum1 = new Grupprum("Grupprum 1", 4, false);
+            Grupprum grupprum2 = new Grupprum("Grupprum 2", 6, true);
             Grupprum grupprum3 = new Grupprum("Grupprum 3", 8, true);
 
             lokaler.Add(sal1);
