@@ -10,6 +10,7 @@ namespace Bookningapp
     {
         // Lista för att hålla alla bokningar (med start- och sluttid för varje bokning)
         private List<(DateTime StartTid, DateTime SlutTid)> bokningar;
+        
 
         // Konstruktor som skapar en tom lista för bokningar
         public BokningS()
@@ -44,11 +45,11 @@ namespace Bookningapp
             return false;
         }
 
-        // Tar bort en bokning baserat på starttid
+        //Tar bort en bokning baserat på starttid
         public bool TaBortBokning(DateTime startTid)
         {
             var bokning = bokningar.Find(b => b.StartTid == startTid);
-            if(bokning != default)
+            if (bokning != default)
             {
                 bokningar.Remove(bokning);
                 Console.WriteLine("bokning avbokad");
@@ -57,6 +58,8 @@ namespace Bookningapp
             Console.WriteLine($"Ingen bokning hittades ");
             return false;
         }
+
+
 
         //lista alla bokningar i programmet
         public void ListaAllaBokningar()
