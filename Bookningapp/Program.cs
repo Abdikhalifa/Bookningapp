@@ -114,13 +114,6 @@ namespace Bookningapp
                     {
                         case "1":
 
-                            //NyBokning(); //engelska?//Alexandra? August?
-                            //Metod med interface  
-                            //Interface ska implementeras i "relevanta" klasser
-                            //Interface som returtyp
-                            //DateTime
-                            //TimeSpan
-
                             break;
 
                         case "2":

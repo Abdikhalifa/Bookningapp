@@ -19,12 +19,12 @@ namespace Bookningapp
         }
 
 
-        // Kontrollerar om lokalen är ledig under en viss period
+        //Kontrollerar om lokalen är ledig under en viss period
         public bool ÄrTillgänglig(DateTime startTid, DateTime slutTid)
         {
             foreach (var bokning in bokningar)
             {
-                if((startTid < bokning.SlutTid) && (slutTid > bokning.StartTid))
+                if ((startTid < bokning.SlutTid) && (slutTid > bokning.StartTid))
                 {
                     return false;
                 }
@@ -35,7 +35,7 @@ namespace Bookningapp
         // Lägger till en bokning om lokalen är ledig under den angivna tiden
         public bool läggTillBokning(DateTime startTid, DateTime slutTid)
         {
-            if (ÄrTillgänglig (startTid, slutTid))
+            if (ÄrTillgänglig(startTid, slutTid))
             {
                 bokningar.Add((startTid, slutTid));
                 Console.WriteLine($"boknig lyckades från {startTid} till {slutTid}");
@@ -61,7 +61,8 @@ namespace Bookningapp
 
 
 
-        //lista alla bokningar i programmet
+
+        //lista alla bokningar i programmet / Rebecca
         public void ListaAllaBokningar()
         {
             if (bokningar.Count == 0)
@@ -74,7 +75,7 @@ namespace Bookningapp
                 Console.WriteLine(bokning);
         }
 
-        //Lista efter specifikt år 
+        //Lista efter specifikt år /Rebecca
         public void ListaBokningarEfterÅr(int år)
         {
             var årligBokning = bokningar.Where(b => b.StartTid.Year == år).ToList();
