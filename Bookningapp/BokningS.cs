@@ -2,50 +2,65 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
+using System.Security.Principal;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
 
 namespace Bookningapp
 {
-    public class BokningS : IBookable //Behöver ev lokal som moderklass för att komma åt lokalnamnspropertyn?
+    public class BokningS //: IBookable //Behöver ev lokal som moderklass för att komma åt lokalnamnspropertyn?
     {
         // Lista för att hålla alla bokningar (med start- och sluttid för varje bokning)
-        private List<(DateTime StartTid, DateTime SlutTid)> bokningar;
+        //private List<(DateTime StartTid, DateTime SlutTid)> bokningar;
 
-        public int Bokningsnummer { get; set; }
+        public static List<BokningS> Bokningar  = new List<BokningS>();
+        //public int Bokningsnummer { get; set; }
         public string Användarnamn { get; set; }
+        public string Namn {  get; set; }
 
         public DateTime StarttidBokning { get; set; }
 
         public DateTime SluttidBokning { get; set; }
 
         public TimeSpan TidslängdBokning => SluttidBokning - StarttidBokning;
+        public BokningS()
+        {
+            
+        }
 
-        public BokningS(/*int bokningsnummer,*/ string användarnamn, DateTime starttid, DateTime sluttid)
+        public BokningS(/*int bokningsnummer,*/ string namn, string användarnamn, DateTime starttid, DateTime sluttid)
         {
             //Bokningsnummer = bokningsnummer;
+            Namn = namn;
             Användarnamn = användarnamn;
             StarttidBokning = starttid;
             SluttidBokning = sluttid;
 
         }
-        List<BokningS> Bokning = new List<BokningS>();
-        public void NyBokning()
+        public void NyBokning(Lokal namn)  //Här körs alternativet att ta in lokalnamnet i Program innan metodanropet istället för i metoden
         {
-            while (true)
+            /*while (true)
             {
                 //Visa lista på alla befintliga bokningar (Förslagsvis framgår av lokalnamnet om det är sal eller grupprum) 
                 //Ska denna del läggas utanför whileloop?:
+                foreach (BokningS bokning in Bokningar) //Ska vara lista för lokaler
+                {
+                    Console.WriteLine($"{bokning.Namn} "); //Antal platser och andra egenskaper
+
+                }
+                Console.WriteLine();
                 Console.WriteLine("Skriv in namnet på den lokal du vill boka: ");  //Ha en siffra vid lokalnamnet som kan anges istället?
                 string? stringÖnskadLokal = Console.ReadLine();
-                Bokning. lokal;
+                BokningS önskadLokal = 
+                
                 //Konvertera sträng till Bokning (Lokal?)
-                Bokning lokal = bokningar.Find(lokal => lokal == önskadLokal);
+                BokningS lokal = Bokningar.Find(lokal => lokal == önskadLokal);
 
                 if (lokal != null)
-                {
-                    DateTime starttidBokning;
+                {*/
+                    
+                    DateTime önskadStarttidBokning;
                     while (true)
                     {
                         Console.WriteLine("Skriv in datum och tid som du vill boka i formatet yyyy-MM-dd HH:mm");
@@ -54,7 +69,7 @@ namespace Bookningapp
                         //Konvertera till DateTime (kontrollera om det är rätt format, det får inte heller vara ett datum som passerat(?))
                         try
                         {
-                            DateTime.TryParse(strängdatum, out starttidBokning);
+                            DateTime.TryParse(strängdatum, out önskadStarttidBokning);
 
                             break;
                         }
@@ -67,34 +82,49 @@ namespace Bookningapp
 
                     Console.WriteLine("Ange hur många timmar du vill boka lokalen (skriv till exempel 1,5 för en timme och 30 minuter)");
                     double doubleBokningslängd = Convert.ToDouble(Console.ReadLine());
+                    TimeSpan önskadBokningslängd = new TimeSpan();
+
                     //Konvertera till TimeSpan (kontrollera om rätt format och inte för lång tid eller minustid)
                     try
                     {
-                        TimeSpan Bokningslängd = TimeSpan.FromHours(doubleBokningslängd);
+                        önskadBokningslängd = TimeSpan.FromHours(doubleBokningslängd);
                     }
                     catch
                     {
+                        Console.WriteLine("Ogiltigt format. Försök igen.");
 
                     }
                     
 
-                    DateTime sluttidBokning = starttidBokning + bokningslängd;
+                    DateTime önskadSluttidBokning = önskadStarttidBokning.Add(önskadBokningslängd);
 
-                    //Kontrollera om lokalen har bokad under den tiden
-                    for eller foreachloop? //Loopa igenom alla (eventuella) bokningar för lokalen
 
-                        {
-                        if (starttid ny<sluttid befintlig && sluttid ny > starttid befintlig
-                        //Om en bokning hittas som går in i nya bokningen avbryts loopen och 
+                     //Kontrollera om lokalen har bokad under den tiden
+            //            BokningS lokal = Bokningar.Where(lokal => lokal.Namn == strängÖnskadLokal).FirstOrDefault();
+    
+            {
+                foreach (var item in Bokningar)
+                {
+                    if (önskadStarttidBokning < item.StarttidBokning && önskadSluttidBokning > item.SluttidBokning && item.Namn  != namn.Namn) ;
+                    {
+                        Console.WriteLine("Den önskade lokalen är redan bokad under hela eller en del av den önskade tidperioden.\nVälj ny lokal eller försök boka lokalen under en annan tid.");
+                        break;
+                    }
+                else
+                    {
+
+                    }   //Om en bokning hittas som går in i nya bokningen avbryts loopen och 
                         // Användaren får välja på att boka annan tid eller annan lokal (kräver fler loopar?)
 
                }
+            }
+               
 
                     //(if (starttid ny >= sluttid befintlig || sluttid ny <= starttid befintlig) kan bokningen läggas till i listan)
 
                 }
                 //Om användaren skriver in en lokal som inte finns
-                else
+                /*else
                 {
                     Console.WriteLine("Tyvärr, den lokal du angivit finns inte. Tryck på valfri knapp för att försöka igen.");
                     Console.ReadKey(true);
