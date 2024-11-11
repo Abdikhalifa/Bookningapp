@@ -8,56 +8,7 @@ namespace Bookningapp
 {
     public class BokningS
     {
-        //// Lista för att hålla alla bokningar (med start- och sluttid för varje bokning)
-        //private List<(DateTime StartTid, DateTime SlutTid)> bokningar;
 
-
-        //// Konstruktor som skapar en tom lista för bokningar
-        //public BokningS()
-        //{
-        //    bokningar = new List<(DateTime StartTid, DateTime SlutTid)> ();
-        //}
-
-
-        //// Kontrollerar om lokalen är ledig under en viss period
-        //public bool ÄrTillgänglig(DateTime startTid, DateTime slutTid)
-        //{
-        //    foreach (var bokning in bokningar)
-        //    {
-        //        if((startTid < bokning.SlutTid) && (slutTid > bokning.StartTid))
-        //        {
-        //            return false;
-        //        }
-        //    }
-        //    return true;
-        //}
-
-        //// Lägger till en bokning om lokalen är ledig under den angivna tiden
-        //public bool läggTillBokning(DateTime startTid, DateTime slutTid)
-        //{
-        //    if (ÄrTillgänglig (startTid, slutTid))
-        //    {
-        //        bokningar.Add((startTid, slutTid));
-        //        Console.WriteLine($"boknig lyckades från {startTid} till {slutTid}");
-        //        return true;
-        //    }
-        //    Console.WriteLine($"lokalen är upptagen under den tiden");
-        //    return false;
-        //}
-
-        ////Tar bort en bokning baserat på starttid
-        //public bool TaBortBokning(DateTime startTid)
-        //{
-        //    var bokning = bokningar.Find(b => b.StartTid == startTid);
-        //    if (bokning != default)
-        //    {
-        //        bokningar.Remove(bokning);
-        //        Console.WriteLine("bokning avbokad");
-        //        return true;
-        //    }
-        //    Console.WriteLine($"Ingen bokning hittades ");
-        //    return false;
-        //}
         public static List<BokningS> Bokningar = new List<BokningS>();
         //public int Bokningsnummer { get; set; }
         public string Användarnamn { get; set; }
@@ -179,34 +130,124 @@ namespace Bookningapp
         }
 
 
-            //lista alla bokningar i programmet
-            public void ListaAllaBokningar()
+        //lista alla bokningar i programmet
+        public void ListaAllaBokningar()
+        {
+            if (bokningar.Count == 0)
             {
-                if (bokningar.Count == 0)
-                {
-                    Console.WriteLine("Inga bokningar finns.");
-                    return;
-                }
-
-                foreach (var bokning in bokningar)
-                    Console.WriteLine(bokning);
+                Console.WriteLine("Inga bokningar finns.");
+                return;
             }
 
-            //Lista efter specifikt år 
-            public void ListaBokningarEfterÅr(int år)
+            foreach (var bokning in bokningar)
+                Console.WriteLine(bokning);
+        }
+
+        //Lista efter specifikt år 
+        public void ListaBokningarEfterÅr(int år)
+        {
+            var årligBokning = bokningar.Where(b => b.StartTid.Year == år).ToList();
+
+            if (årligBokning.Count == 0)
             {
-                var årligBokning = bokningar.Where(b => b.StartTid.Year == år).ToList();
+                Console.WriteLine($"Inga bokningar finns för året {år}.");
+                return;
+            }
 
-                if (årligBokning.Count == 0)
-                {
-                    Console.WriteLine($"Inga bokningar finns för året {år}.");
-                    return;
-                }
+            foreach (var bokning in årligBokning)
+                Console.WriteLine(bokning);
 
-                foreach (var bokning in årligBokning)
-                    Console.WriteLine(bokning);
+        }
+
+        // Metod för att ta bort en bokning
+        public void TaBortBokning()
+        {
+            Console.WriteLine("Ange bokningsnummer att ta bort: ");
+            int bokningsNamn = int.Parse(Console.ReadLine());
+            Bokning bokning = bokningar.Find(b => b.Bokningsnummer == bokningsNamn); // Söker i listan efter bokningen med det angivna numret
+
+            if (bokning != null) // Kollar om vi hittade en bokning
+            {
+                bokningar.Remove(bokning); // Tar bort bokningen från listan
+                Console.WriteLine($"Bokning {bokningsNamn} borttagen.");
+            }
+            else
+            {
+                Console.WriteLine("Bokning hittades inte."); // Om vi inte hittar bokningen, säg till användaren
+            }
+        }
+        // Metod för att uppdatera en bokning
+        public void UppdateraBokning()
+        {
+            Console.WriteLine("Ange bokningsnamn att uppdatera: ");
+            int bokningsNamn = int.Parse(Console.ReadLine());
+            Bokning bokning = bokningar.Find(b => b.Bokningsnamn == bokningsNamn);
+
+            if (bokning != null)
+            {
+                Console.WriteLine("Ange ny starttid (YYYY-MM-DD HH:MM): ");
+                bokning.Starttid = DateTime.Parse(Console.ReadLine());
+
+                Console.WriteLine("Ange ny sluttid (YYYY-MM-DD HH:MM): ");
+                bokning.Sluttid = DateTime.Parse(Console.ReadLine());
+
+                Console.WriteLine($"Bokning {bokningsNamn} uppdaterad till {bokning.Starttid} - {bokning.Sluttid}");
+            }
+            else
+            {
+                Console.WriteLine("Bokning hittades inte.");
             }
         }
     }
 }
-//Test
+
+//// Lista för att hålla alla bokningar (med start- och sluttid för varje bokning)
+//private List<(DateTime StartTid, DateTime SlutTid)> bokningar;
+
+
+//// Konstruktor som skapar en tom lista för bokningar
+//public BokningS()
+//{
+//    bokningar = new List<(DateTime StartTid, DateTime SlutTid)> ();
+//}
+
+
+//// Kontrollerar om lokalen är ledig under en viss period
+//public bool ÄrTillgänglig(DateTime startTid, DateTime slutTid)
+//{
+//    foreach (var bokning in bokningar)
+//    {
+//        if((startTid < bokning.SlutTid) && (slutTid > bokning.StartTid))
+//        {
+//            return false;
+//        }
+//    }
+//    return true;
+//}
+
+//// Lägger till en bokning om lokalen är ledig under den angivna tiden
+//public bool läggTillBokning(DateTime startTid, DateTime slutTid)
+//{
+//    if (ÄrTillgänglig (startTid, slutTid))
+//    {
+//        bokningar.Add((startTid, slutTid));
+//        Console.WriteLine($"boknig lyckades från {startTid} till {slutTid}");
+//        return true;
+//    }
+//    Console.WriteLine($"lokalen är upptagen under den tiden");
+//    return false;
+//}
+
+////Tar bort en bokning baserat på starttid
+//public bool TaBortBokning(DateTime startTid)
+//{
+//    var bokning = bokningar.Find(b => b.StartTid == startTid);
+//    if (bokning != default)
+//    {
+//        bokningar.Remove(bokning);
+//        Console.WriteLine("bokning avbokad");
+//        return true;
+//    }
+//    Console.WriteLine($"Ingen bokning hittades ");
+//    return false;
+//}
