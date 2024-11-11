@@ -184,7 +184,8 @@ namespace Bookningapp
 
         }
 
-        public static void TaBortBokning()
+        //Metod för att ta bort en bokning(Abdikani)
+        public static void TaBortBokning() 
         {
             Console.WriteLine("Ange bokningsnummer att ta bort: ");
             string inputBokningsNr = Console.ReadLine();
@@ -213,6 +214,7 @@ namespace Bookningapp
             }
         }
 
+        // Metod för att uppdatera en bokning (Abdikani)
         public static void UppdateraBokning()
         {
             Console.WriteLine("Ange bokningsnummer att uppdatera: ");
