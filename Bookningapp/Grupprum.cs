@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Bookningapp
 {
-    internal class Grupprum : Lokal
+    internal class Grupprum : Lokal // (Abdikani)
     {
         //public int AntalPlatser { get; set; }
         public bool HarWhiteboard { get; set; }
@@ -19,7 +19,8 @@ namespace Bookningapp
             base.VisaInfo();
             Console.WriteLine($"Whiteboard: {(HarWhiteboard ? "Ja" : "Nej")}");
 
-            //public override string VisaInfo() => $"Grupprum:{Namn}, Antal platser: {Kapacitet}, Har Whiteboard: {HarWhiteboard}";
+            //(Rebecca)
+            //public override string VisaInfo() => $"Grupprum:{Namn}, Antal platser: {Kapacitet}, Har Whiteboard: {HarWhiteboard}"; // Rebecca
         }
     }
    

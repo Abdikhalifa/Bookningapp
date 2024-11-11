@@ -10,7 +10,7 @@ namespace Bookningapp
         private static List<Lokal> lokaler = new List<Lokal>();
         static void Main(string[] args)
         {
-
+            //Lokaler som finns med från start, när man startar programmet. /Rebecca
             //3 "skapade" salar från start
             Sal sal1 = new Sal("Sal 1", 42, true);
             Sal sal2 = new Sal("Sal 2", 35, false);
@@ -27,8 +27,8 @@ namespace Bookningapp
             lokaler.Add(grupprum2);
             lokaler.Add(grupprum3);
 
-            //ladda in lokaler från fil vid programstart
-            lokaler = FilHanterare.LäsFrånFil();
+            //ladda in lokaler från fil vid programstart /Rebecca
+            //lokaler = FilHanterare.LäsFrånFil();
 
             {
 
@@ -48,24 +48,24 @@ namespace Bookningapp
                 while (!exit)
 
                 {
-                    Console.Clear(); 
-                    Console.Write("Ange namn och tryck enter.");
+                    //Console.Clear();
+                    //Console.Write("Ange namn och tryck enter.");
                     //Om vi skulle lägga detta i meny på Omniway slipper man uppge namn och
                     //programmet skulle i så fall "automatiskt" veta om man är personal eller elev när man loggar in.
                     //Detta kan vara en beskrivning om hur man startar och använder programmet?
 
-            //}
-            //static void ListaLokaler()
-            //{
-            //    Console.WriteLine("Här listar vi alla lokaler.");
-            //    // Implementera kod för att lista alla skapade lokaler
-            //}
+                    //}
+                    //static void ListaLokaler()
+                    //{
+                    //    Console.WriteLine("Här listar vi alla lokaler.");
+                    //    // Implementera kod för att lista alla skapade lokaler
+                    //}
 
-            //static void SkapaBokning()
-            //{
-            //    Console.WriteLine("Här skapas en ny bokning.");
-            //    // Implementera kod för att skapa en ny bokning
-            //}
+                    //static void SkapaBokning()
+                    //{
+                    //    Console.WriteLine("Här skapas en ny bokning.");
+                    //    // Implementera kod för att skapa en ny bokning
+                    //}
 
                     Console.WriteLine("1. Skapa en ny bokning");
                     //Enklare om man kan söka på lediga lokaler
@@ -113,19 +113,39 @@ namespace Bookningapp
 
                     {
                         case "1":
+                            while (true)
+                            {
+                                Console.Write("Ange ditt namn och tryck enter: ");
+                                string användarNamn = Console.ReadLine();
 
-                            NyBokning(); //engelska?//Alexandra? August?
-                            //Metod med interface  
-                            //Interface ska implementeras i "relevanta" klasser
-                            //Interface som returtyp
-                            //DateTime
-                            //TimeSpan
+                                ListaAllaLokaler();
+                                Console.WriteLine();
+                                Console.WriteLine("Skriv in namnet på den lokal du vill boka: ");
+                                string? strängÖnskadLokal = Console.ReadLine();
+
+
+                                Lokal lokal = lokaler.Where(lokal => lokal.Namn == strängÖnskadLokal).FirstOrDefault();
+
+                                if (lokal != null)
+                                {
+                                    BokningS.NyBokning(strängÖnskadLokal, användarNamn);
+                                    break;
+                                }
+                                else
+                                {
+                                    Console.WriteLine("Tryck på valfri knapp för att försöka igen.");
+                                    Console.ReadKey(true);
+                                    Console.Clear();
+                                }
+                            }
 
                             break;
 
-                        case "2":
 
-                            UppdateraBefintligBokning(); //Alexandra? August?
+                        case "2":
+                            BokningS.UppdateraBokning();
+
+                            // UppdateraBefintligBokning(); //Alexandra? August?
                             //Metod med interface 
                             //Interface ska implementeras i "relevanta" klasser
                             //Interface som returtyp
@@ -135,7 +155,8 @@ namespace Bookningapp
                             break;
 
                         case "3":
-                            RaderaBefintligBokning(); //(Alexandra ? August ?)
+                            BokningS.TaBortBokning();
+                            // RaderaBefintligBokning(); //(Alexandra ? August ?)
                             //Metod med interface 
                             //Interface ska implementeras i "relevanta" klasser
                             //Interface som returtyp
@@ -157,8 +178,8 @@ namespace Bookningapp
                             break;
 
                         case "5":
-                            Console.WriteLine("Ange år vilket år du vill kolla bokningar:");
-                            if (int.TryParse(Console.ReadLine(), out int år))
+                            Console.WriteLine("Ange år vilket år du vill kolla bokningar:"); //Ber användaren om år vid sökning efter bokning efter år.
+                            if (int.TryParse(Console.ReadLine(), out int år))                 //Rebecca
                                 bokningsHanterare.ListaBokningarEfterÅr(år);
                             break;
 
@@ -171,7 +192,7 @@ namespace Bookningapp
                                     //Filtrering och sökning skulle kunna vara att bara se sina egna
                                     //bokningar eller bara se lediga lokaler (som nämnts ovan)
 
-                                    return;
+                                    break;
 
                                 case "7":
                                     LäggaTillNySal(); //Rebecka?
@@ -186,7 +207,7 @@ namespace Bookningapp
 
                                 case "9":
                                     exit = true;
-                                    FilHanterare.SparaTillFil(lokaler);//Spara lokaler till fil
+                                    FilHanterare.SparaTillFil(lokaler);//Spara lokaler till fil /Rebecca
                                     Console.WriteLine("Lokaler och bokningar sparade. Programmet avslutas!");
                                     break;
 
@@ -203,7 +224,7 @@ namespace Bookningapp
                             }
 
                 }
-                //metod för att skapa ny sal
+                //metod för att skapa ny sal /Rebecca
                 static void LäggaTillNySal()
                 {
                     Console.WriteLine("Ange namn på salen: ");
@@ -226,7 +247,7 @@ namespace Bookningapp
                     Console.WriteLine("Ny sal skapad.");
                 }
 
-                //metod för att skapa nytt grupprum
+                //metod för att skapa nytt grupprum /Rebecca
                 static void LäggaTillNyttGrupprum()
                 {
                     Console.WriteLine("Ange namn på grupprummet: ");
@@ -249,7 +270,7 @@ namespace Bookningapp
                     Console.WriteLine("Nytt grupprum skapat.");
                 }
 
-                //Metod för att lista alla lokaler (salar och grupprum)
+                //Metod för att lista alla lokaler (salar och grupprum) / Rebecca
                 static void ListaAllaLokaler()
                 {
                     if (lokaler.Count == 0)
@@ -262,7 +283,8 @@ namespace Bookningapp
                     foreach (var lokal in lokaler)
                     {
                         lokal.VisaInfo();
-                    }
+
+                }
                 }
 
 
