@@ -113,15 +113,33 @@ namespace Bookningapp
 
                     {
                         case "1":
+                            while (true)
+                            {
+                                Console.Write("Ange ditt namn och tryck enter: ");
+                                string användarNamn = Console.ReadLine();
+                                ListaAllaLokaler();
+                                Console.WriteLine();
+                                Console.WriteLine("Skriv in namnet på den lokal du vill boka: ");
+                                string? strängÖnskadLokal = Console.ReadLine();
 
-                            NyBokning(); //engelska?//Alexandra? August?
-                            //Metod med interface  
-                            //Interface ska implementeras i "relevanta" klasser
-                            //Interface som returtyp
-                            //DateTime
-                            //TimeSpan
+
+                                Lokal lokal = lokaler.Where(lokal => lokal.Namn == strängÖnskadLokal).FirstOrDefault();
+
+                                if (lokal != null)
+                                {
+                                    bokning.NyBokning(strängÖnskadLokal, användarNamn);
+                                    break;
+                                }
+                                else
+                                {
+                                    Console.WriteLine("Tyvärr, den lokal du angivit finns inte. Tryck på valfri knapp för att försöka igen.");
+                                    Console.ReadKey(true);
+                                    Console.Clear();
+                                }
+                            }
 
                             break;
+
 
                         case "2":
 
