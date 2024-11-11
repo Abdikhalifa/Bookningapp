@@ -6,10 +6,21 @@ using System.Threading.Tasks;
 
 namespace Bookningapp
 {
-    public interface IBookable
+    public interface IBookable // Interface (Alexandra)
     {
-        bool Boka(DateTime startTid, DateTime slutTid);
-        bool Avboka(DateTime startTid);
-        bool ÄrTillgänglig(DateTime startTid, DateTime slutTid);
+        string Användarnamn { get; set; }
+
+        DateTime StarttidBokning { get; set; }
+        DateTime SluttidBokning { get; set; } //inget set om det räknas ut i programmet
+
+        TimeSpan TidslängdBokning => SluttidBokning - StarttidBokning;
+
+        void NyBokning();
+
+
+        void UppdateraBokning();
+
+        void TaBortBokning();
+
     }
 }

@@ -143,8 +143,9 @@ namespace Bookningapp
 
 
                         case "2":
+                            BokningS.UppdateraBokning();
 
-                           // UppdateraBefintligBokning(); //Alexandra? August?
+                            // UppdateraBefintligBokning(); //Alexandra? August?
                             //Metod med interface 
                             //Interface ska implementeras i "relevanta" klasser
                             //Interface som returtyp
@@ -154,7 +155,8 @@ namespace Bookningapp
                             break;
 
                         case "3":
-                           // RaderaBefintligBokning(); //(Alexandra ? August ?)
+                            BokningS.TaBortBokning();
+                            // RaderaBefintligBokning(); //(Alexandra ? August ?)
                             //Metod med interface 
                             //Interface ska implementeras i "relevanta" klasser
                             //Interface som returtyp
@@ -190,7 +192,7 @@ namespace Bookningapp
                                     //Filtrering och sökning skulle kunna vara att bara se sina egna
                                     //bokningar eller bara se lediga lokaler (som nämnts ovan)
 
-                                    return;
+                                    break;
 
                                 case "7":
                                     LäggaTillNySal(); //Rebecka?

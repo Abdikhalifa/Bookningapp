@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Bookningapp
 {
-    public class Lokal //: IBookable 
+    public class Lokal : IBookable //(Abdikani)
     {
         // Egenskaper för namn och kapacitet
         public string Namn { get; set; }
