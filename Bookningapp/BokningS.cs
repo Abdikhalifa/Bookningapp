@@ -6,10 +6,11 @@ using System.Threading.Tasks;
 
 namespace Bookningapp
 {
-    internal class BokningS
+    public class BokningS
     {
         // Lista för att hålla alla bokningar (med start- och sluttid för varje bokning)
         private List<(DateTime StartTid, DateTime SlutTid)> bokningar;
+        
 
         // Konstruktor som skapar en tom lista för bokningar
         public BokningS()
@@ -44,11 +45,11 @@ namespace Bookningapp
             return false;
         }
 
-        // Tar bort en bokning baserat på starttid
+        //Tar bort en bokning baserat på starttid
         public bool TaBortBokning(DateTime startTid)
         {
             var bokning = bokningar.Find(b => b.StartTid == startTid);
-            if(bokning != default)
+            if (bokning != default)
             {
                 bokningar.Remove(bokning);
                 Console.WriteLine("bokning avbokad");
@@ -59,5 +60,33 @@ namespace Bookningapp
         }
 
 
+
+        //lista alla bokningar i programmet
+        public void ListaAllaBokningar()
+        {
+            if (bokningar.Count == 0)
+            {
+                Console.WriteLine("Inga bokningar finns.");
+                return;
+            }
+
+            foreach (var bokning in bokningar)
+                Console.WriteLine(bokning);
+        }
+
+        //Lista efter specifikt år 
+        public void ListaBokningarEfterÅr(int år)
+        {
+            var årligBokning = bokningar.Where(b => b.StartTid.Year == år).ToList();
+
+            if (årligBokning.Count == 0)
+            {
+                Console.WriteLine($"Inga bokningar finns för året {år}.");
+                return;
+            }
+
+            foreach (var bokning in årligBokning) 
+                Console.WriteLine(bokning);
+        }
     }
 }

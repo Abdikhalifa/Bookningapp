@@ -13,7 +13,7 @@ namespace Bookningapp
         private static String sökVäg = "lokaler.json"; // Definerar sökvägen till json-filen där lokaler ska sparas
 
         //metod för att spara lokaler till en json-fil
-        public static void SparaTillFil(List<Lokal>lokaler)
+        public static void SparaTillFil(List<Lokal> lokaler)
         {
             //konverterar listan av "lokal"-objekt till en såkallad json-sträng
             var json = JsonSerializer.Serialize(lokaler);

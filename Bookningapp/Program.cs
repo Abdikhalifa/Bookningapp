@@ -1,3 +1,4 @@
+using System.Collections.Concurrent;
 using System.Security.Cryptography.X509Certificates;
 using System.Security.Principal;
 
@@ -5,9 +6,27 @@ namespace Bookningapp
 {
     public class Program
     {
+        private static BokningS bokningsHanterare = new BokningS();
         private static List<Lokal> lokaler = new List<Lokal>();
         static void Main(string[] args)
         {
+
+            //3 "skapade" salar från start
+            Sal sal1 = new Sal("Sal 1", 42, true);
+            Sal sal2 = new Sal("Sal 2", 35, false);
+            Sal sal3 = new Sal("Sal 3",50, true);
+            //3 "skapade" salar från start
+            Grupprum grupprum1 = new Grupprum("Grupprum 1", 4, false);
+            Grupprum grupprum2 = new Grupprum("Grupprum 2", 6, true);
+            Grupprum grupprum3 = new Grupprum("Grupprum 3", 8, true);
+            //Lägger in dem i listan "lokaler". 
+            lokaler.Add(sal1);
+            lokaler.Add(sal2); 
+            lokaler.Add(sal3);
+            lokaler.Add(grupprum1);
+            lokaler.Add(grupprum2);
+            lokaler.Add(grupprum3);
+
             //ladda in lokaler från fil vid programstart
             lokaler = FilHanterare.LäsFrånFil();
 
@@ -17,7 +36,7 @@ namespace Bookningapp
                 //Lägga utanför main? I klassen?
                 //Vilka egenskaper finns i listan
 
-                List<> bokningar = new List<Bokningar>();
+                //List<> bokningar = new List<Bokningar>();
                 //Bokningar finns inte som klass
                 //Kan bokningar läggas in i lokallistan? Förstår det som att det är olika saker
                 //eftersom det ska gå att söka på det ena eller det andra? Kanske bara kan rensa i listan med serializing
@@ -68,19 +87,24 @@ namespace Bookningapp
                     //Lägga in sortering på ett visst år som en eget menyval eller så kan man göra det när listan visas
                     //Mycket enklare att boka om denna lista (också) dyker upp när man ska boka
 
+                    Console.WriteLine("5. Lista bokningar från specifikt år");
+                   
 
-                    Console.WriteLine("5. Lista på alla lokaler"); //Med lämpliga egenskaper 
+
+                    Console.WriteLine("6. Lista på alla lokaler"); //Med lämpliga egenskaper 
                                                                    //Alla lokaler ska lagras enligt uppgift genom att spara på fil,(Rebecka)
                                                                    //Enklare att boka om denna lista (också) dyker upp när man bokar ny
                                                                    //så man får det man vill ha och inte behöver kolla listan före?
 
 
-                    Console.WriteLine("6. Lägga till en ny lokal");
+                    Console.WriteLine("7. Lägga till en ny sal");
                     //Borde väl inte kunna göras av elev egentligen?
                     //När ny sal skapas ska programmet säga till om salnamn redan finns
 
+                    Console.WriteLine("8. Lägga till ett nytt grupprum");
 
-                    Console.WriteLine("7. Avsluta");
+
+                    Console.WriteLine("9. Avsluta");
 
 
                     string choice = Console.ReadLine();
@@ -118,9 +142,11 @@ namespace Bookningapp
 
                             break;
 
+
                         case "4":
-                            ListaAllaBokningar(); //(August? Rebecka?)
-                                                  //Använda List<T> för att lagra bokningar när program körs 
+                            bokningsHanterare.ListaAllaBokningar();
+                             //(August? Rebecka?)
+                            //Använda List<T> för att lagra bokningar när program körs 
 
                             //Implementera operationer för filtrering och sökning
                             //Filtrering och sökning skulle kunna vara att bara se sina egna
@@ -131,57 +157,118 @@ namespace Bookningapp
                             break;
 
                         case "5":
-                            ListaAllaLokaler(); //Rebecka?
-                                                //Använda List<T> för att lagra bokningar när program körs 
+                            Console.WriteLine("Ange år vilket år du vill kolla bokningar:");
+                            if (int.TryParse(Console.ReadLine(), out int år))
+                                bokningsHanterare.ListaBokningarEfterÅr(år);
+                            break;
 
-                            //Implementera operationer för filtrering och sökning
-                            //Filtrering och sökning skulle kunna vara att bara se sina egna
-                            //bokningar eller bara se lediga lokaler (som nämnts ovan)
-
-                            return;
 
                         case "6":
-                            LäggaTillNyLokal(); //Rebecka?
+                                    ListaAllaLokaler(); //Rebecka?
+                                                        //Använda List<T> för att lagra bokningar när program körs 
 
-                            break;
+                                    //Implementera operationer för filtrering och sökning
+                                    //Filtrering och sökning skulle kunna vara att bara se sina egna
+                                    //bokningar eller bara se lediga lokaler (som nämnts ovan)
+
+                                    return;
+
+                                case "7":
+                                    LäggaTillNySal(); //Rebecka?
+
+                                    break;
+
+                                case "8":
+                                    LäggaTillNyttGrupprum(); //Rebecka?
+
+                                    break;
 
 
-                        case "7":
-                            exit = true;
-                            FilHanterare.SparaTillFil(lokaler);//Spara lokaler till fil
-                            Console.WriteLine("Lokaler och bokningar sparade. Programmet avslutas!");
-                            break;
+                                case "9":
+                                    exit = true;
+                                    FilHanterare.SparaTillFil(lokaler);//Spara lokaler till fil
+                                    Console.WriteLine("Lokaler och bokningar sparade. Programmet avslutas!");
+                                    break;
 
-                        default:
+                                default:
 
-                            Console.WriteLine("Ogiltigt val. Försök igen.");
+                                    Console.WriteLine("Ogiltigt val. Försök igen.");
 
-                            break;
+                                    break;
 
-                            //Jag gör menyn färdig?
-                            //Ska ha felhantering och kommentarer (överallt) + dokumentation?
+                                    //Jag gör menyn färdig?
+                                    //Ska ha felhantering och kommentarer (överallt) + dokumentation?
 
-                    }
+                                }
+                            }
 
                 }
+                //metod för att skapa ny sal
+                static void LäggaTillNySal()
+                {
+                    Console.WriteLine("Ange namn på salen: ");
+                    String namn = Console.ReadLine();
+
+                    //Kontrollera att namnet är unikt
+                    if (lokaler.Any(l => l.Namn == namn))
+                    {
+                        Console.WriteLine("En sal med detta namn finns redan, vänligen välj ett annat namn.");
+                        return;
+                    }
+
+                    Console.WriteLine("Ange kapacitet: ");
+                    int kapacitet = int.Parse(Console.ReadLine());
+                    Console.WriteLine(" salen en projektor? (ja/nej): ");
+                    bool harProjektor = Console.ReadLine().ToLower() == "ja";
+
+                    Sal nySal = new Sal(namn, kapacitet, harProjektor);
+                    lokaler.Add(nySal);
+                    Console.WriteLine("Ny sal skapad.");
+                }
+
+                //metod för att skapa nytt grupprum
+                static void LäggaTillNyttGrupprum()
+                {
+                    Console.WriteLine("Ange namn på grupprummet: ");
+                    String namn = Console.ReadLine();
+
+                    //Kontrollera att namnet är unikt
+                    if (lokaler.Any(l => l.Namn == namn))
+                    {
+                        Console.WriteLine("Ett grupprum med detta namn finns redan, vänligen välj ett annat namn.");
+                        return;
+                    }
+
+                    Console.WriteLine("Ange kapacitet: ");
+                    int kapacitet = int.Parse(Console.ReadLine());
+                    Console.WriteLine("Har grupprummet en whiteboard? (ja/nej): ");
+                    bool harWhiteboard = Console.ReadLine().ToLower() == "ja";
+
+                    Grupprum nyttGrupprum = new Grupprum(namn, kapacitet, harWhiteboard);
+                    lokaler.Add(nyttGrupprum);
+                    Console.WriteLine("Nytt grupprum skapat.");
+                }
+
                 //Metod för att lista alla lokaler (salar och grupprum)
                 static void ListaAllaLokaler()
-                    { 
-                        if (lokaler.Count == 0)
-                        {
-                            Console.WriteLine("Inga lokaler finns att visa.");
-                            return;
-                        }
+                {
+                    if (lokaler.Count == 0)
+                    {
+                        Console.WriteLine("Inga lokaler finns att visa.");
+                        return;
+                    }
 
                     Console.WriteLine("Lista över alla lokaler:");
-                    foreach (var lokal in lokaler) 
+                    foreach (var lokal in lokaler)
                     {
-                        Console.WriteLine(lokal.VisaInfo());//eventuell fel
+                        lokal.VisaInfo();
                     }
                 }
+
+
             }
 
 
         }
     }
-}
+
