@@ -19,7 +19,7 @@ namespace Bookningapp
             base.VisaInfo();
             Console.WriteLine($"Whiteboard: {(HarWhiteboard ? "Ja" : "Nej")}");
 
-            //public override string VisaInfo() => $"Grupprum:{Namn}, Antal platser: {Kapacitet}, Har Whiteboard: {HarWhiteboard}";
+            //public override string VisaInfo() => $"Grupprum:{Namn}, Antal platser: {Kapacitet}, Har Whiteboard: {HarWhiteboard}"; // Rebecca
         }
     }
    

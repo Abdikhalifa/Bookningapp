@@ -130,7 +130,8 @@ namespace Bookningapp
         }
 
 
-        //lista alla bokningar i programmet
+
+        //lista alla bokningar i programmet / Rebecca
         public void ListaAllaBokningar()
         {
             if (bokningar.Count == 0)
@@ -143,7 +144,7 @@ namespace Bookningapp
                 Console.WriteLine(bokning);
         }
 
-        //Lista efter specifikt år 
+        //Lista efter specifikt år /Rebecca
         public void ListaBokningarEfterÅr(int år)
         {
             var årligBokning = bokningar.Where(b => b.StartTid.Year == år).ToList();
