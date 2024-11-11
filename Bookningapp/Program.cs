@@ -28,7 +28,7 @@ namespace Bookningapp
             lokaler.Add(grupprum3);
 
             //ladda in lokaler från fil vid programstart /Rebecca
-            lokaler = FilHanterare.LäsFrånFil();
+            //lokaler = FilHanterare.LäsFrånFil();
 
             {
 
@@ -48,24 +48,24 @@ namespace Bookningapp
                 while (!exit)
 
                 {
-                    Console.Clear(); 
-                    Console.Write("Ange namn och tryck enter.");
+                    //Console.Clear();
+                    //Console.Write("Ange namn och tryck enter.");
                     //Om vi skulle lägga detta i meny på Omniway slipper man uppge namn och
                     //programmet skulle i så fall "automatiskt" veta om man är personal eller elev när man loggar in.
                     //Detta kan vara en beskrivning om hur man startar och använder programmet?
 
-            //}
-            //static void ListaLokaler()
-            //{
-            //    Console.WriteLine("Här listar vi alla lokaler.");
-            //    // Implementera kod för att lista alla skapade lokaler
-            //}
+                    //}
+                    //static void ListaLokaler()
+                    //{
+                    //    Console.WriteLine("Här listar vi alla lokaler.");
+                    //    // Implementera kod för att lista alla skapade lokaler
+                    //}
 
-            //static void SkapaBokning()
-            //{
-            //    Console.WriteLine("Här skapas en ny bokning.");
-            //    // Implementera kod för att skapa en ny bokning
-            //}
+                    //static void SkapaBokning()
+                    //{
+                    //    Console.WriteLine("Här skapas en ny bokning.");
+                    //    // Implementera kod för att skapa en ny bokning
+                    //}
 
                     Console.WriteLine("1. Skapa en ny bokning");
                     //Enklare om man kan söka på lediga lokaler
@@ -117,6 +117,7 @@ namespace Bookningapp
                             {
                                 Console.Write("Ange ditt namn och tryck enter: ");
                                 string användarNamn = Console.ReadLine();
+
                                 ListaAllaLokaler();
                                 Console.WriteLine();
                                 Console.WriteLine("Skriv in namnet på den lokal du vill boka: ");
@@ -127,12 +128,12 @@ namespace Bookningapp
 
                                 if (lokal != null)
                                 {
-                                    bokning.NyBokning(strängÖnskadLokal, användarNamn);
+                                    BokningS.NyBokning(strängÖnskadLokal, användarNamn);
                                     break;
                                 }
                                 else
                                 {
-                                    Console.WriteLine("Tyvärr, den lokal du angivit finns inte. Tryck på valfri knapp för att försöka igen.");
+                                    Console.WriteLine("Tryck på valfri knapp för att försöka igen.");
                                     Console.ReadKey(true);
                                     Console.Clear();
                                 }
@@ -280,7 +281,8 @@ namespace Bookningapp
                     foreach (var lokal in lokaler)
                     {
                         lokal.VisaInfo();
-                    }
+
+                }
                 }
 
 

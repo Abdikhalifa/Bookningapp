@@ -18,12 +18,23 @@ namespace Bookningapp
 
         public DateTime SluttidBokning { get; set; }
 
+        public int Bokningsnummer { get; set; }
+
         public TimeSpan TidslängdBokning => SluttidBokning - StarttidBokning;
         public BokningS()
         {
 
         }
-        public void NyBokning(string lokal, string användarnamn)
+
+        public BokningS(int bokningsnummer, String lokal, String användarnam, DateTime startTid, DateTime slutTid)
+        {
+            Bokningsnummer = Bokningar.Count + 1;
+            Namn = lokal;
+            Användarnamn = användarnam;
+            StarttidBokning = startTid;
+            SluttidBokning = slutTid;
+        }
+        public static void NyBokning(string lokal, string användarnamn)
         {
             DateTime önskadStarttidBokning;
             TimeSpan önskadBokningslängd = new TimeSpan();
@@ -123,10 +134,14 @@ namespace Bookningapp
 
             }
             //Skapar ny instans av bokningsklassen och lägger till i listan för bokningar
-            BokningS bokning = new BokningS(lokal, användarnamn, önskadStarttidBokning, önskadSluttidBokning);
+            //BokningS bokning = new BokningS(lokal, användarnamn, önskadStarttidBokning, önskadSluttidBokning);
+            int nyttBokningsnummer = Bokningar.Count + 1;
+            BokningS bokning = new BokningS(nyttBokningsnummer, lokal, användarnamn, önskadStarttidBokning, önskadSluttidBokning);
             Bokningar.Add(bokning);
 
             Console.WriteLine($"Lokalen {lokal} har bokats mellan {önskadStarttidBokning} och {önskadSluttidBokning}");
+            Console.WriteLine("Tryck på valfri knapp för att återgå till menyn.");
+            Console.ReadKey(true);
         }
 
 
@@ -134,20 +149,26 @@ namespace Bookningapp
         //lista alla bokningar i programmet / Rebecca
         public void ListaAllaBokningar()
         {
-            if (bokningar.Count == 0)
+            if (Bokningar.Count == 0)
             {
                 Console.WriteLine("Inga bokningar finns.");
                 return;
             }
 
-            foreach (var bokning in bokningar)
+            foreach (var bokning in Bokningar)
                 Console.WriteLine(bokning);
         }
 
         //Lista efter specifikt år /Rebecca
+        public override string ToString()
+        {
+            return $"Bokningsnummer: {Bokningsnummer}, Lokal: {Namn}, " +
+                   $"Användarnamn: {Användarnamn}, Starttid: {StarttidBokning}, " +
+                   $"Sluttid: {SluttidBokning}, Tidslängd: {TidslängdBokning.TotalHours} timmar";
+        }
         public void ListaBokningarEfterÅr(int år)
         {
-            var årligBokning = bokningar.Where(b => b.StartTid.Year == år).ToList();
+            var årligBokning = Bokningar.Where(b => b.StarttidBokning.Year == år).ToList();
 
             if (årligBokning.Count == 0)
             {
@@ -165,11 +186,11 @@ namespace Bookningapp
         {
             Console.WriteLine("Ange bokningsnummer att ta bort: ");
             int bokningsNamn = int.Parse(Console.ReadLine());
-            Bokning bokning = bokningar.Find(b => b.Bokningsnummer == bokningsNamn); // Söker i listan efter bokningen med det angivna numret
+            BokningS bokning = Bokningar.Find(b => b.Bokningsnummer == bokningsNamn); // Söker i listan efter bokningen med det angivna numret
 
             if (bokning != null) // Kollar om vi hittade en bokning
             {
-                bokningar.Remove(bokning); // Tar bort bokningen från listan
+                Bokningar.Remove(bokning); // Tar bort bokningen från listan
                 Console.WriteLine($"Bokning {bokningsNamn} borttagen.");
             }
             else
@@ -182,17 +203,17 @@ namespace Bookningapp
         {
             Console.WriteLine("Ange bokningsnamn att uppdatera: ");
             int bokningsNamn = int.Parse(Console.ReadLine());
-            Bokning bokning = bokningar.Find(b => b.Bokningsnamn == bokningsNamn);
+            BokningS bokning = Bokningar.Find(b => b.Bokningsnummer == bokningsNamn);
 
             if (bokning != null)
             {
                 Console.WriteLine("Ange ny starttid (YYYY-MM-DD HH:MM): ");
-                bokning.Starttid = DateTime.Parse(Console.ReadLine());
+                bokning.StarttidBokning = DateTime.Parse(Console.ReadLine());
 
                 Console.WriteLine("Ange ny sluttid (YYYY-MM-DD HH:MM): ");
-                bokning.Sluttid = DateTime.Parse(Console.ReadLine());
+                bokning.SluttidBokning = DateTime.Parse(Console.ReadLine());
 
-                Console.WriteLine($"Bokning {bokningsNamn} uppdaterad till {bokning.Starttid} - {bokning.Sluttid}");
+                Console.WriteLine($"Bokning {bokningsNamn} uppdaterad till {bokning.StarttidBokning} - {bokning.SluttidBokning}");
             }
             else
             {
