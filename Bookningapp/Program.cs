@@ -28,7 +28,7 @@ namespace Bookningapp
             lokaler.Add(grupprum3);
 
             //ladda in lokaler från fil vid programstart /Rebecca
-            //lokaler = FilHanterare.LäsFrånFil();
+            lokaler = FilHanterare.LäsFrånFil();
 
             {
 
