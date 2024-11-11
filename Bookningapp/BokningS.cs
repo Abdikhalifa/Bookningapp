@@ -58,7 +58,20 @@ namespace Bookningapp
         //    Console.WriteLine($"Ingen bokning hittades ");
         //    return false;
         //}
+        public static List<BokningS> Bokningar = new List<BokningS>();
+        //public int Bokningsnummer { get; set; }
+        public string Användarnamn { get; set; }
+        public string Namn { get; set; }
 
+        public DateTime StarttidBokning { get; set; }
+
+        public DateTime SluttidBokning { get; set; }
+
+        public TimeSpan TidslängdBokning => SluttidBokning - StarttidBokning;
+        public BokningS()
+        {
+
+        }
         public void NyBokning(string lokal, string användarnamn)
         {
             DateTime önskadStarttidBokning;
