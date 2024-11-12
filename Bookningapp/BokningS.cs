@@ -277,7 +277,7 @@ namespace Bookningapp
             // Kollar om användaren har skrivit ett giltigt bokningsnummer
             if (!int.TryParse(inputBokningsNamn, out bokningsNamn))
             {
-                Console.WriteLine("Oj, det där var inte ett giltigt bokningsnummer. Försök igen.");
+                Console.WriteLine("Det där var inte ett giltigt bokningsnummer. Försök igen.");
                 return;
             }
 
@@ -292,7 +292,7 @@ namespace Bookningapp
                 string inputStarttid = Console.ReadLine();
                 if (!DateTime.TryParse(inputStarttid, out nyStarttid))
                 {
-                    Console.WriteLine("Oj, det där var inte ett giltigt datumformat. Försök igen.");
+                    Console.WriteLine("Det där var inte ett giltigt datumformat. Försök igen.");
                     return;
                 }
 
@@ -302,7 +302,7 @@ namespace Bookningapp
                 string inputSluttid = Console.ReadLine();
                 if (!DateTime.TryParse(inputSluttid, out nySluttid))
                 {
-                    Console.WriteLine("Oj, det där var inte ett giltigt datumformat. Försök igen.");
+                    Console.WriteLine("Det där var inte ett giltigt datumformat. Försök igen.");
                     return;
                 }
 
