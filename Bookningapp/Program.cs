@@ -179,7 +179,7 @@ namespace Bookningapp
 
                     Console.WriteLine("Ange kapacitet: ");
                     int kapacitet = int.Parse(Console.ReadLine());
-                    Console.WriteLine(" salen en projektor? (ja/nej): ");
+                    Console.WriteLine("Har salen en projektor? (ja/nej): ");
                     bool harProjektor = Console.ReadLine().ToLower() == "ja";
 
                     Sal nySal = new Sal(namn, kapacitet, harProjektor);
