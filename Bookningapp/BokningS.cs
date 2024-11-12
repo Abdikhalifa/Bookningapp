@@ -43,8 +43,6 @@ namespace Bookningapp
             TimeSpan önskadBokningslängd = new TimeSpan();
             DateTime önskadSluttidBokning;
 
-        //Etikett 
-        beginning:
             //Tar in startdatum för bokningen
             while (true)
             {
@@ -135,30 +133,29 @@ namespace Bookningapp
 
                         if (choice == "1")
                         {
-                            goto beginning;
-                        }
-                        Console.ReadKey(true);
-                        Console.Clear();
-
-                        return;
-                    }
-                    else if (önskadStarttidBokning < item.StarttidBokning && önskadSluttidBokning > item.StarttidBokning)
-                    {
-                        Console.WriteLine("Den önskade lokalen är redan bokad under en del av den önskade tidperioden.");
-                        Console.WriteLine("Tryck 1 för att välja ny tid för samma lokal, tryck på annan valfri knapp för att återgå till menyn och boka ny lokal.");
-                        Console.ReadKey(true);
-                        string? choice = Console.ReadLine();
-
-                        if (choice == "1")
-                        {
-                            goto beginning;
+                            NyBokning(lokal, användarnamn);
                         }
 
                         Console.Clear();
 
                         return;
                     }
-                    else if (önskadStarttidBokning > item.StarttidBokning && önskadStarttidBokning < item.SluttidBokning)
+                    else if (önskadStarttidBokning <= item.StarttidBokning && önskadSluttidBokning > item.StarttidBokning)
+                    {
+                        Console.WriteLine("Den önskade lokalen är redan bokad under en del av den önskade tidperioden.");
+                        Console.WriteLine("Tryck 1 för att välja ny tid för samma lokal, tryck på annan valfri knapp för att återgå till menyn och boka ny lokal.");
+                        string? choice = Console.ReadLine();
+
+                        if (choice == "1")
+                        {
+                            NyBokning(lokal, användarnamn);
+                        }
+
+                        Console.Clear();
+
+                        return;
+                    }
+                    else if (önskadStarttidBokning >= item.StarttidBokning && önskadStarttidBokning < item.SluttidBokning)
                     {
                         Console.WriteLine("Den önskade lokalen är redan bokad under en del av den önskade tidperioden.");
                         Console.WriteLine("Tryck 1 för att välja ny tid för samma lokal, tryck på annan valfri knapp för att återgå till menyn och boka ny lokal.");
@@ -167,9 +164,25 @@ namespace Bookningapp
 
                         if (choice == "1")
                         {
-                            goto beginning;
+                            NyBokning(lokal, användarnamn);
                         }
-                        Console.ReadKey(true);
+
+                        Console.Clear();
+
+                        return;
+                    }
+                    else if (önskadStarttidBokning >= item.StarttidBokning && önskadSluttidBokning > item.SluttidBokning && önskadStarttidBokning < item.SluttidBokning)
+                    {
+                        Console.WriteLine("Den önskade lokalen är redan bokad under en del av den önskade tidperioden.");
+                        Console.WriteLine("Tryck 1 för att välja ny tid för samma lokal, tryck på annan valfri knapp för att återgå till menyn och boka ny lokal.");
+
+                        string? choice = Console.ReadLine();
+
+                        if (choice == "1")
+                        {
+                            NyBokning(lokal, användarnamn);
+                        }
+
                         Console.Clear();
 
                         return;
@@ -187,7 +200,6 @@ namespace Bookningapp
             Console.WriteLine("Tryck på valfri knapp för att återgå till menyn.");
             Console.ReadKey(true);
         }
-
 
 
 
