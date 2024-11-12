@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Bookningapp
 {
-    public class Lokal //: IBookable 
+    public class Lokal //: //IBookable //(Abdikani)
     {
         // Egenskaper för namn och kapacitet
         public string Namn { get; set; }
@@ -28,17 +28,7 @@ namespace Bookningapp
             Console.WriteLine($"Namn: {Namn} Kapacitet: {Kapacitet}");
 
         }
-        // Metod för att boka en tid
-        public bool Boka(DateTime startTid, DateTime slutTid)
-        {
-            return bokningS.läggTillBokning(startTid, slutTid);
-        }
-        // Metod för att avboka 
-        public bool Avboka(DateTime startTid)
-        {
-            return bokningS.TaBortBokning(startTid);
-           
-        }
+      
 
 
 

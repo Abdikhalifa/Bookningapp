@@ -28,8 +28,9 @@ namespace Bookningapp
             lokaler.Add(grupprum3);
 
             //ladda in lokaler från fil vid programstart /Rebecca
-            //lokaler = FilHanterare.LäsFrånFil();
-
+            lokaler = FilHanterare.LäsFrånFil();
+            //ladda in bokningar från fil vid programstart /August
+            BokningS.Bokningar = FilHanterare.LäsBokningFrånFil();
             {
 
                 //List<> lokaler = new List<Lokal>();
@@ -208,6 +209,7 @@ namespace Bookningapp
                                 case "9":
                                     exit = true;
                                     FilHanterare.SparaTillFil(lokaler);//Spara lokaler till fil /Rebecca
+                                    FilHanterare.SparaBokningTillFil(BokningS.Bokningar); //Spara bokningar till fil /August
                                     Console.WriteLine("Lokaler och bokningar sparade. Programmet avslutas!");
                                     break;
 
