@@ -28,10 +28,6 @@ namespace Bookningapp
             Console.WriteLine($"Namn: {Namn} Kapacitet: {Kapacitet}");
 
         }
-      
-
-
-
     }
 }
 
