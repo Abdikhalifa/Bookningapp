@@ -126,7 +126,7 @@ namespace Bookningapp
 
                         case "5": //(Rebecca)
                             Console.WriteLine("Ange år vilket år du vill kolla bokningar:"); //Ber användaren om år vid sökning efter bokning efter år.
-                            if (int.TryParse(Console.ReadLine(), out int år))                 //Rebecca
+                            if (int.TryParse(Console.ReadLine(), out int år))                
                                 bokningsHanterare.ListaBokningarEfterÅr(år);
                             break;
 
