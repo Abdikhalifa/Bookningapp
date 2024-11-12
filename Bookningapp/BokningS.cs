@@ -255,6 +255,7 @@ namespace Bookningapp
                 Console.WriteLine("Den bokningen finns inte, försök med ett annat nummer.");
             }
         }
+
         public static void UppdateraBokning()
         {
             Console.WriteLine("Ange bokningsnummer att uppdatera: ");
@@ -285,7 +286,7 @@ namespace Bookningapp
 
                 // Fråga efter ny sluttid och kontrollera krock med andra bokningar
                 DateTime nySluttid;
-                Console.WriteLine("Ange ny sluttid  ");
+                Console.WriteLine("Ange ny sluttid ");
                 string inputSluttid = Console.ReadLine();
                 if (!DateTime.TryParse(inputSluttid, out nySluttid))
                 {
