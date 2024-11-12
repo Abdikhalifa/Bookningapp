@@ -257,58 +257,120 @@ namespace Bookningapp
         }
 
         // Metod för att uppdatera en bokning (Abdikani)
+        //public static void UppdateraBokning()
+        //{
+        //    Console.WriteLine("Ange bokningsnummer att uppdatera: ");
+        //    string inputBokningsNr = Console.ReadLine();
+        //    int bokningsNummer;
+
+        //    // Kollar om användaren har skrivit ett giltigt bokningsnummer
+        //    if (!int.TryParse(inputBokningsNr, out bokningsNummer))
+        //    {
+        //        Console.WriteLine("Det där var inte ett giltigt bokningsnummer. Ösäker bokningnummer? kolla på nr4. Försök igen.");
+        //        return;
+        //    }
+
+        //    // Hitta bokningen med det numret
+        //    BokningS bokning = Bokningar.Find(b => b.Bokningsnummer == bokningsNummer);
+
+        //    if (bokning != null)
+        //    {
+        //        // Om vi hittar bokningen, fråga efter ny starttid
+        //        DateTime nyStarttid;
+        //        Console.WriteLine("Ange ny starttid (YYYY-MM-DD HH:MM): ");
+        //        string inputStarttid = Console.ReadLine();
+        //        if (!DateTime.TryParse(inputStarttid, out nyStarttid))
+        //        {
+        //            Console.WriteLine("Det där var inte ett giltigt datumformat. Försök igen.");
+        //            return;
+        //        }
+
+
+        //        bokning.StarttidBokning = nyStarttid;
+
+        //        // Fråga efter ny sluttid
+        //        DateTime nySluttid;
+        //        Console.WriteLine("Ange ny sluttid (YYYY-MM-DD HH:MM): ");
+        //        string inputSluttid = Console.ReadLine();
+        //        if (!DateTime.TryParse(inputSluttid, out nySluttid))
+        //        {
+        //            Console.WriteLine("Det där var inte ett giltigt datumformat. Försök igen.");
+        //            return;
+        //        }
+        //        bokning.SluttidBokning = nySluttid;
+
+        //        // Bekräfta att bokningen har uppdaterats
+        //        Console.WriteLine($"Bokning {bokningsNummer} uppdaterad till {bokning.StarttidBokning} - {bokning.SluttidBokning}");
+        //    }
+        //    else
+        //    {
+        //        // Om vi inte hittar bokningen
+        //        Console.WriteLine("Den bokningen finns inte, dubbelkolla numret och försök igen.");
+        //    }
+        //}
         public static void UppdateraBokning()
         {
             Console.WriteLine("Ange bokningsnummer att uppdatera: ");
-            string inputBokningsNr = Console.ReadLine();
-            int bokningsNummer;
+            string inputBokningsNamn = Console.ReadLine();
+            int bokningsNamn;
 
             // Kollar om användaren har skrivit ett giltigt bokningsnummer
-            if (!int.TryParse(inputBokningsNr, out bokningsNummer))
+            if (!int.TryParse(inputBokningsNamn, out bokningsNamn))
             {
-                Console.WriteLine("Det där var inte ett giltigt bokningsnummer. Ösäker bokningnummer? kolla på nr4. Försök igen.");
+                Console.WriteLine("Oj, det där var inte ett giltigt bokningsnummer. Försök igen.");
                 return;
             }
 
             // Hitta bokningen med det numret
-            BokningS bokning = Bokningar.Find(b => b.Bokningsnummer == bokningsNummer);
+            BokningS bokning = Bokningar.Find(b => b.Bokningsnummer == bokningsNamn);
 
             if (bokning != null)
             {
-                // Om vi hittar bokningen, fråga efter ny starttid
+                // Fråga efter ny starttid och kontrollera krock med andra bokningar
                 DateTime nyStarttid;
-                Console.WriteLine("Ange ny starttid (YYYY-MM-DD HH:MM): ");
+                Console.WriteLine("Ange ny starttid ");
                 string inputStarttid = Console.ReadLine();
                 if (!DateTime.TryParse(inputStarttid, out nyStarttid))
                 {
-                    Console.WriteLine("Det där var inte ett giltigt datumformat. Försök igen.");
+                    Console.WriteLine("Oj, det där var inte ett giltigt datumformat. Försök igen.");
                     return;
                 }
-                bokning.StarttidBokning = nyStarttid;
 
-                // Fråga efter ny sluttid
+                // Fråga efter ny sluttid och kontrollera krock med andra bokningar
                 DateTime nySluttid;
-                Console.WriteLine("Ange ny sluttid (YYYY-MM-DD HH:MM): ");
+                Console.WriteLine("Ange ny sluttid  ");
                 string inputSluttid = Console.ReadLine();
                 if (!DateTime.TryParse(inputSluttid, out nySluttid))
                 {
-                    Console.WriteLine("Det där var inte ett giltigt datumformat. Försök igen.");
+                    Console.WriteLine("Oj, det där var inte ett giltigt datumformat. Försök igen.");
                     return;
                 }
+
+                // Kolla om den nya tiden krockar med en annan bokning
+                bool tidKrockar = Bokningar.Any(b => b.Bokningsnummer != bokning.Bokningsnummer &&
+                                                      b.StarttidBokning < nySluttid &&
+                                                      b.SluttidBokning > nyStarttid);
+
+                if (tidKrockar)
+                {
+                    Console.WriteLine("Den nya tiden krockar med en annan bokning. Försök med en annan tid.");
+                    return;
+                }
+
+                // Uppdatera bokningen om ingen krock
+                bokning.StarttidBokning = nyStarttid;
                 bokning.SluttidBokning = nySluttid;
 
-                // Bekräfta att bokningen har uppdaterats
-                Console.WriteLine($"Bokning {bokningsNummer} uppdaterad till {bokning.StarttidBokning} - {bokning.SluttidBokning}");
+                Console.WriteLine($"Bokning {bokningsNamn} uppdaterad till {bokning.StarttidBokning} - {bokning.SluttidBokning}");
             }
             else
             {
-                // Om vi inte hittar bokningen
                 Console.WriteLine("Den bokningen finns inte, dubbelkolla numret och försök igen.");
             }
         }
 
 
-       
+
 
 
 
