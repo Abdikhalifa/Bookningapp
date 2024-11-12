@@ -265,7 +265,7 @@ namespace Bookningapp
             // Kollar om användaren har skrivit ett giltigt bokningsnummer
             if (!int.TryParse(inputBokningsNamn, out bokningsNamn))
             {
-                Console.WriteLine("Oj, det där var inte ett giltigt bokningsnummer. Försök igen.");
+                Console.WriteLine("Det där var inte ett giltigt bokningsnummer. Försök igen.");
                 return;
             }
 
