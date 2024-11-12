@@ -56,7 +56,7 @@ namespace Bookningapp
 
                     Console.WriteLine("8. Lägga till ett nytt grupprum");
 
-                    Console.WriteLine("9. Avsluta");
+                    Console.WriteLine("9. Avsluta och spara din ändringar");
                     Console.WriteLine();
 
                     Console.WriteLine("Välj ett alternativ");
