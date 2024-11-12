@@ -39,7 +39,7 @@ namespace Bookningapp
 
         }
 
-        // Metod för att spara bokningar till en JSON-fil
+        // Metod för att spara bokningar till en JSON-fil (August) 
 
         public static void SparaBokningTillFil(List<BokningS> Bokningar)
         {

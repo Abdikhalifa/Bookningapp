@@ -11,7 +11,7 @@ namespace Bookningapp
         string Användarnamn { get; set; }
 
         DateTime StarttidBokning { get; set; }
-        DateTime SluttidBokning { get; set; } //inget set om det räknas ut i programmet
+        DateTime SluttidBokning { get; set; } 
 
         TimeSpan TidslängdBokning => SluttidBokning - StarttidBokning;
 

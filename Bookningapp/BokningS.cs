@@ -48,26 +48,32 @@ namespace Bookningapp
             //Tar in startdatum för bokningen
             while (true)
             {
-
-                Console.WriteLine("Skriv in datum och tid som du vill boka i formatet yyyy-MM-dd HH:mm");
-                string? strängdatum = Console.ReadLine();
-
-                //Konvertera till DateTime, kontrollerar om det är rätt format och det får inte vara ett datum som passerat)
                 try
                 {
-                    DateTime.TryParse(strängdatum, out önskadStarttidBokning);
+                    Console.Clear();
+                    Console.WriteLine("Skriv in datum och tid som du vill boka i formatet yyyy-MM-dd HH:mm");
+                    string? strängdatum = Console.ReadLine();
+                    // Bestämmer format för datumsträngen
+                    string format = "yyyy-MM-dd HH:mm";
+
+                    önskadStarttidBokning = DateTime.ParseExact(strängdatum, format, null);
+
                     if (önskadStarttidBokning < DateTime.Now)
                     {
-                        Console.WriteLine("Du kan inte boka tider som redan passerats.");
-                        continue;
+                        Console.WriteLine("Du kan inte boka en tid som redan passerat. Tryck på valfri knapp för att välja en ny tid.");
+                        Console.ReadKey(true);
                     }
-
-                    break;
+                    else
+                    {
+                        break;
+                    }
                 }
                 catch
                 {
-                    Console.WriteLine("Ogiltigt datumformat. Försök igen.");
+                    Console.WriteLine("Du har angett ett felaktigt datumformat. Tryck på valfri knapp för att försöka igen.");
+                    Console.ReadKey(true);
                 }
+
 
             }
 
@@ -94,7 +100,7 @@ namespace Bookningapp
                     Console.WriteLine("Du får inte ange 0 eller en negativ tid");
                     continue;
                 }
-                else if (doubleBokningslängd > 24) //För lite?
+                else if (doubleBokningslängd > 24)
                 {
                     Console.WriteLine("Du får boka en lokal i max ett dygn i taget");
                     continue;
@@ -118,21 +124,56 @@ namespace Bookningapp
             //Kontrollerar om önskad tid krockar med befintlig bokning av lokalen
             foreach (var item in Bokningar)
             {
-                if (önskadStarttidBokning < item.StarttidBokning && önskadSluttidBokning > item.SluttidBokning && item.Namn == lokal)
+                if (item.Namn == lokal)
                 {
-                    Console.WriteLine("Den önskade lokalen är redan bokad under hela eller en del av den önskade tidperioden.");
-                    Console.WriteLine("Tryck 1 för att välja ny tid för samma lokal, tryck på annan valfri knapp för att återgå till menyn och boka ny lokal.");
-
-                    string? choice = Console.ReadLine(); //Erbjuda möjlighet att direkt uppge ny tid på vald lokal?
-
-                    if (choice == "1")
+                    if (önskadStarttidBokning >= item.StarttidBokning && önskadSluttidBokning <= item.SluttidBokning)
                     {
-                        goto beginning;  //Console.Clear?
-                    }
-                    Console.ReadKey(true);
-                    Console.Clear();
+                        Console.WriteLine("Den önskade lokalen är redan bokad under den önskade tidperioden.");
+                        Console.WriteLine("Tryck 1 för att välja ny tid för samma lokal, tryck på annan valfri knapp för att återgå till menyn och boka ny lokal.");
 
-                    return;
+                        string? choice = Console.ReadLine();
+
+                        if (choice == "1")
+                        {
+                            goto beginning;
+                        }
+                        Console.ReadKey(true);
+                        Console.Clear();
+
+                        return;
+                    }
+                    else if (önskadStarttidBokning < item.StarttidBokning && önskadSluttidBokning > item.StarttidBokning)
+                    {
+                        Console.WriteLine("Den önskade lokalen är redan bokad under en del av den önskade tidperioden.");
+                        Console.WriteLine("Tryck 1 för att välja ny tid för samma lokal, tryck på annan valfri knapp för att återgå till menyn och boka ny lokal.");
+                        Console.ReadKey(true);
+                        string? choice = Console.ReadLine();
+
+                        if (choice == "1")
+                        {
+                            goto beginning;
+                        }
+
+                        Console.Clear();
+
+                        return;
+                    }
+                    else if (önskadStarttidBokning > item.StarttidBokning && önskadStarttidBokning < item.SluttidBokning)
+                    {
+                        Console.WriteLine("Den önskade lokalen är redan bokad under en del av den önskade tidperioden.");
+                        Console.WriteLine("Tryck 1 för att välja ny tid för samma lokal, tryck på annan valfri knapp för att återgå till menyn och boka ny lokal.");
+
+                        string? choice = Console.ReadLine();
+
+                        if (choice == "1")
+                        {
+                            goto beginning;
+                        }
+                        Console.ReadKey(true);
+                        Console.Clear();
+
+                        return;
+                    }
                 }
 
             }
@@ -146,6 +187,7 @@ namespace Bookningapp
             Console.WriteLine("Tryck på valfri knapp för att återgå till menyn.");
             Console.ReadKey(true);
         }
+
 
 
 
