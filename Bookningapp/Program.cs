@@ -68,41 +68,43 @@ namespace Bookningapp
                     switch (choice)
 
                     {
-                        case "1": //(Rebecca)
+                        case "1": //(Alexandra)
+
+                            Console.Write("Ange ditt namn och tryck enter: ");
+                            string? användarNamn = Console.ReadLine();
+                            if (string.IsNullOrWhiteSpace(användarNamn))
+                            {
+                                Console.WriteLine("Ett namn måste anges för att kunna boka en lokal.");
+                                Console.WriteLine("Tryck på valfri knapp för att komma tillbaka till menyn.");
+                                Console.ReadKey(true);
+                                Console.Clear();
+                                break;
+                            }
+
                             while (true)
                             {
-                                Console.Write("Ange ditt namn och tryck enter: ");
-                                string? användarNamn = Console.ReadLine();
-                                if (string.IsNullOrWhiteSpace(användarNamn))
+                                ListaAllaLokaler();
+                                Console.WriteLine();
+                                Console.WriteLine("Skriv in namnet på den lokal du vill boka: ");
+                                string? strängÖnskadLokal = Console.ReadLine();
+                                Lokal? lokal = lokaler.Where(lokal => lokal.Namn == strängÖnskadLokal).FirstOrDefault();
+
+                                if (lokal != null)
                                 {
-                                    Console.WriteLine("Ett namn måste anges för att kunna boka en lokal.");
-                                    Console.WriteLine("Tryck på valfri knapp för att komma tillbaka till menyn.");
-                                    Console.ReadKey(true);
-                                    Console.Clear();
+                                    BokningS.NyBokning(strängÖnskadLokal, användarNamn);
                                     break;
                                 }
-                                while (true)
+                                else
                                 {
-                                    ListaAllaLokaler();
-                                    Console.WriteLine();
-                                    Console.WriteLine("Skriv in namnet på den lokal du vill boka: ");
-                                    string? strängÖnskadLokal = Console.ReadLine();
-                                    Lokal? lokal = lokaler.Where(lokal => lokal.Namn == strängÖnskadLokal).FirstOrDefault();
+                                    Console.WriteLine("Tyvärr, den lokalen hittades inte.");
+                                    Console.WriteLine("Tryck på valfri knapp för att försöka igen.");
+                                    Console.ReadKey(true);
+                                    Console.Clear();
 
-                                    if (lokal != null)
-                                    {
-                                        BokningS.NyBokning(strängÖnskadLokal, användarNamn);
-                                        break;
-                                    }
-                                    else
-                                    {
-                                        Console.WriteLine("Tyvärr, den lokalen hittades inte.");
-                                        Console.WriteLine("Tryck på valfri knapp för att försöka igen.");
-                                        Console.ReadKey(true);
-                                        Console.Clear();
-                                    }
                                 }
+
                             }
+
                             Console.Clear();
                             break;
 
